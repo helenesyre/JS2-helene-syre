@@ -1,20 +1,11 @@
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
+import { router } from "../src/assets/js/router/index.js";
+import { renderNav } from '../src/assets/js/components/navigation.js';
+import { renderFooter } from '../src/assets/js/components/footer.js';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// Render navigation
+document.getElementById('navbar').innerHTML = renderNav();
+
+// Render footer
+//document.getElementById('footer').innerHTML = renderFooter();
+
+router();
