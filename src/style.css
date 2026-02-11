@@ -15,6 +15,14 @@
   --font-roboto: "Roboto", sans-serif;
 }
 
+@layer components {
+  .card {
+    background-color: var(--color-surface-dark);
+    border-radius: var(--radius-xl);
+    padding: --spacing(5);
+  }
+}
+
 /*
 @layer base {
   h1 {
