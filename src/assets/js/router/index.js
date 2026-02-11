@@ -16,7 +16,11 @@ export function router() {
     '#/postPage': postPage,
     '#/register': register,
     '#/login': login,
-    '#/comingSoon': comingSoon
+    '#/comingSoon': comingSoon,
+    '#/saved-posts': comingSoon,
+    '#/messages': comingSoon,
+    '#/notifications': comingSoon,
+    '#/create': comingSoon,
   };
 
   function handleRoute() {
