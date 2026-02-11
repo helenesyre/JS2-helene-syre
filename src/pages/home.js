@@ -1,13 +1,15 @@
 import { feedNavigation } from "../assets/js/components/feedNavigation";
 import { createPostCard } from "../assets/js/components/createPostCard";
+import { postCard } from "../assets/js/components/postCard";
 
 export function home() {
   return `
     ${feedNavigation()}
     <div class="home">
+      <h1 class="sr-only">Welcome to Your Feed</h1>
       ${createPostCard()}
-      <h1 class="text-3xl font-bold mb-4">Home Page</h1>
-      <p class="text-lg">Welcome to the home page! Here you can find the latest updates and news.</p>
+      ${postCard()}
+      ${postCard()}
     </div>
   `;
 }

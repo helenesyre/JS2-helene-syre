@@ -8,7 +8,7 @@ export function createPostCard() {
     <section class="card mb-6">
       <div class="flex items-center gap-4 mb-5">
         <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-10 h-10">
-        <button onclick="" class="flex-1 text-left bg-surface-medium rounded-lg p-4 text-gray-medium">
+        <button onclick="" class="flex-1 text-left bg-surface-medium rounded-lg p-4 text-gray-medium text-sm">
           What's on your mind?
         </button>
       </div>
@@ -25,12 +25,10 @@ export function createPostCard() {
             ${eventIcon}
           </button>
         </div>
-        <button class="rounded-lg bg-main-neon px-4 py-2 font-medium text-black transform transition-transform duration-200 hover:scale-105 hover:cursor-pointer">
+        <button class="text-base rounded-lg bg-main-neon px-4 py-2 font-medium text-black transform transition-transform duration-200 hover:scale-105 hover:cursor-pointer">
           Create a post
         </button>
-        <!-- Other post options here -->
       </div>
-      <!-- Other icons/buttons here -->
     </section>
   `;
 };

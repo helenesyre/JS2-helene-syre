@@ -19,7 +19,7 @@
   .card {
     background-color: var(--color-surface-dark);
     border-radius: var(--radius-xl);
-    padding: --spacing(5);
+    padding: --spacing(6);
   }
 }
 
