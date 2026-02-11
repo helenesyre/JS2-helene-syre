@@ -11,4 +11,17 @@
   --color-input-bg-dark: #0C0B0E;
   --color-surface-dark: #1E1E1E;
   --color-surface-medium: #323232;
+
+  --font-roboto: "Roboto", sans-serif;
 }
+
+/*
+@layer base {
+  h1 {
+    font-size: var(--text-2xl);
+  }
+  h2 {
+    font-size: var(--text-2xl);
+  }
+}
+*/
