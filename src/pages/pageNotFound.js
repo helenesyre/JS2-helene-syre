@@ -11,4 +11,4 @@ export function pageNotFound() {
       <a href="#/" class="text-base rounded-lg bg-main-neon px-4 py-2 font-medium text-black transform transition-transform duration-200 hover:scale-105 hover:cursor-pointer">Go to Home</a>
     </section>
   `;
-}
+};
