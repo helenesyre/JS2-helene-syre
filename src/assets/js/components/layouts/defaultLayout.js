@@ -6,7 +6,7 @@ export default function defaultLayout(content) {
     <header class="basis-1/5 border border-gray-medium">
       <nav id="navbar" class="text-main-white p-6 flex flex-col gap-10 h-screen sticky top-0"></nav>
     </header>
-    <main class="basis-3/5 m-8">
+    <main class="basis-2/5 m-8">
       <div id="content">${content}</div>
     </main>
     <aside id="sidebar" class="basis-1/5 border border-gray-medium p-6 h-screen sticky top-0">
