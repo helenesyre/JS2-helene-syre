@@ -8,22 +8,27 @@ export function suggestions() {
         <li class="flex items-center gap-4">
           <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-8 h-8">
           <p class="text-sm font-medium">User 1</p>
+          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
         </li>
         <li class="flex items-center gap-4">
           <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-8 h-8">
           <p class="text-sm font-medium">User 2</p>
+          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
         </li>
         <li class="flex items-center gap-4">
           <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-8 h-8">
           <p class="text-sm font-medium">User 3</p>
+          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
         </li>
         <li class="flex items-center gap-4">
           <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-8 h-8">
           <p class="text-sm font-medium">User 4</p>
+          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
         </li>
         <li class="flex items-center gap-4">
           <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-8 h-8">
           <p class="text-sm font-medium">User 5</p>
+          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
         </li>
       </ul>
       <p class="text-sm text-gray-light mt-4 hover:cursor-pointer hover:underline">View more</p>
