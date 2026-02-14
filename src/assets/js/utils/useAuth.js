@@ -19,7 +19,7 @@ export function useAuth() {
         console.log('Login successful! Redirecting to home...', 'Login Success', 'success');
         // Redirect after a short delay to allow toast to be seen
         setTimeout(() => {
-          window.location.href = `${import.meta.env.BASE_URL}/`;
+          window.location.hash = '#/';
         }, 2000);
       } else {
         console.log("Login failed: " + (response.errors?.[0]?.message || "Check console for details."));
