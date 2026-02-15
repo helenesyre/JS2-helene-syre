@@ -4,15 +4,34 @@ import { commentIcon } from "./icons/commentIcon";
 import { shareIcon } from "./icons/shareIcon";
 import { ellipsisIcon } from "./icons/ellipsisIcon";
 
-export function postCard() {
+/**
+ * Source:
+ * https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
+ */
+
+export function postCard(post) {
+  const totalLikes = post.reactions?.reduce((sum, r) => sum + (r.count || 0), 0) || 0;
+  const totalComments = post.comments?.length || 0;
+  const avatarImgAlt = post.author?.avatar?.alt || 'User Avatar';
+  const postMediaImg = post.media?.url
+    ? `<img src="${post.media.url}" alt="${post.media.alt || 'Post Image'}" class="rounded-lg mb-7 w-full h-auto object-cover">`
+    : '';
+  const postDate = (post.updated && post.updated !== post.created) ? post.updated : post.created;
+  const formattedDate = new Date(postDate).toLocaleDateString('no-NO', {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   return `
     <article class="card mb-6">
       <header class="flex items-start justify-between mb-5">
         <div class="flex items-center gap-3">
-          <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-10 h-10">
+          <img src="${post.author.avatar.url}" alt="${avatarImgAlt}" class="rounded-full w-10 h-10">
           <div>
-            <h2 class="text-main-white text-base">Smith Jems</h2>
-            <p class="text-gray-medium text-sm">12h ago</p>
+            <h2 class="text-main-white text-base">${post.author.name}</h2>
+            <p class="text-gray-medium text-sm">${formattedDate}</p>
           </div>
         </div>
         <button class="more-btn" aria-label="More options">${ellipsisIcon}</button>
@@ -20,21 +39,17 @@ export function postCard() {
 
       <section class="text-main-white">
         <div class="flex flex-col gap-2 mb-5">
-          <h3 class="text-2xl font-semibold">Long title is written here today</h3>
-          <p class="text-sm leading-relaxed">In the fast-paced world of corporate life, it's
-          crucial to prioritize your mental peace. Take moments to breathe,
-          reflect, and recharge. Seek solace in small rituals, like morning
-          walks, deep breaths, or a quick meditation session during breaks.
-          #mentalpeace #corporatelife</p>
+          <h3 class="text-2xl font-semibold">${post.title}</h3>
+          <p class="text-sm leading-relaxed text-ellipsis overflow-hidden">${post.body}</p>
         </div>
 
-        <img src="${gradientImg}" alt="Social Media Post Image" class="rounded-lg mb-7 w-full h-96 object-cover">
+        ${postMediaImg}
       </section>
 
       <footer class="text-gray-light text-sm flex items-center justify-between mb-5">
         <div class="flex gap-3">
-          <button class="flex items-center gap-2">${likeIcon} 2.8K Likes</button>
-          <button class="flex items-center gap-2">${commentIcon} 7 Comments</button>
+          <button class="flex items-center gap-2">${likeIcon} ${totalLikes} Likes</button>
+          <button class="flex items-center gap-2">${commentIcon} ${totalComments} Comments</button>
         </div>
         <button class="flex items-center gap-2">${shareIcon} Share</button>
       </footer>

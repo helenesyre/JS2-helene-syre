@@ -26,15 +26,15 @@ export function router() {
     '#/create': comingSoon,
   };
 
-  function handleRoute() {
+  async function handleRoute() {
     const hash = window.location.hash || '#/'; // Default to home if no hash
-    const content = routes[hash] ? routes[hash]() : pageNotFound(); // Get the content for the current route or show 404
+    const content = routes[hash] ? await routes[hash]() : pageNotFound(); // Get the content for the current route or show 404
     const element = document.getElementById('app');
     if (hash === '#/login' || hash === '#/register') {
       element.className = '';
       element.innerHTML = cleanLayout(content); // Use clean layout for login and register pages
     } else {
-      element.className = 'flex flex-row mx-36'
+      element.className = 'flex flex-row justify-center mx-36'
       element.innerHTML = defaultLayout(content); // Use default layout for all other pages
       document.getElementById('navbar').innerHTML = renderNav();
     }

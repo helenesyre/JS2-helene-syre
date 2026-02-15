@@ -1,15 +1,18 @@
 import { useAuth } from './useAuth.js';
 import { useFetch } from './useFetch.js';
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 export async function getAllPosts() {
   const auth = useAuth();
   const token = auth.getToken();
-  const data = await useFetch('/social/posts', {
+  const data = await useFetch('/social/posts?_author=true&_comments=true&_reactions=true', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    }
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
   });
   return data;
 };
