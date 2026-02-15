@@ -10,6 +10,12 @@ export async function useFetch(url, options = {}) {
   try {
     const response = await fetch(API_URL + url, options);
     if (!response.ok) {
+      if (response.status === 401) {
+        // Handle unauthorized access (e.g., token expired)
+        localStorage.removeItem('accessToken'); // Clear the token from localStorage
+        localStorage.removeItem('profileName'); // Clear the profile name from localStorage
+        window.location.hash = '#/login'; // Redirect to login page
+      }
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     return await response.json();
