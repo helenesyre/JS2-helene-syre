@@ -5,6 +5,8 @@ import { savedPostsIcon } from "./icons/savedPostsIcon";
 import { notificationsIcon } from "./icons/noticifationsIcon";
 import { createIcon } from "./icons/createIcon";
 import { profileIcon } from "./icons/profileIcon";
+import useModal from "../utils/useModal";
+import { createPostModal } from "./createPostModal";
 
 export function renderNav() {
   const currentHash = window.location.hash || '#/';
@@ -17,11 +19,20 @@ export function renderNav() {
     { href: '#/profile', label: 'Profile', icon: profileIcon },
   ];
 
+  const { openModal } = useModal();
+  const modalContent = createPostModal();
+  addEventListener('click', (event) => {
+    if (event.target.closest('a') && event.target.closest('a').getAttribute('href') === '#/create') {
+      event.preventDefault();
+      openModal(modalContent);
+    }
+  });
+
   return `
     <a href="#/" class="flex items-center">${navLogo}</a>
     <div class="space-y-4">
       ${links.map(link => `
-        <a href="${link.href}" class="flex items-center hover:bg-main-white hover:text-main-black p-3 rounded-xl ${currentHash === link.href ? ' bg-main-neon text-main-black' : ' text-gray-light'}">
+        <a href="${link.href}" class="flex items-center hover:bg-main-white hover:text-main-black p-3 rounded-xl smooth-transition ${currentHash === link.href ? ' bg-main-neon text-main-black' : ' text-gray-light'}">
           <span class="mr-2">${link.icon}</span>
           ${link.label}
         </a>
