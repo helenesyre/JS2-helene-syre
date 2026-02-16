@@ -18,15 +18,62 @@ export async function getAllPosts() {
 };
 
 export async function getPostById(id) {
-  const data = await useFetch(`/social/posts/${id}`);
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch(`/social/posts/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+  });
   return data;
 };
 
 export async function getAllFollowingPosts() {
-  const data = await useFetch('/social/posts/following');
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch('/social/posts/following', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+  });
   return data;
 };
 
+// All profiles
+export async function getAllProfiles() {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch('/social/profiles', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+  });
+  return data;
+};
+
+// Single profile
+export async function getProfileData(profileName) {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch(`/social/profiles/${profileName}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+  });
+  return data;
+};
 
 // Filtering
 
