@@ -9,11 +9,14 @@ export function createPostModal() {
     if (event.target.closest('#close-create-post')) {
       closeModal();
     }
+    if (!event.target.closest('#create-post-modal-content') && event.target.closest('#create-post-modal')) {
+      closeModal();
+    }
   });
 
   return `
     <div id="create-post-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div class="bg-surface-dark rounded-lg p-6 w-full max-w-md relative">
+      <div id="create-post-modal-content" class="bg-surface-dark rounded-lg p-6 w-full max-w-md relative">
         <button id="close-create-post" class="absolute top-3 right-3 text-gray-light hover:text-main-neon hover:cursor-pointer">
           ${closeIcon}
         </button>

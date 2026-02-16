@@ -15,6 +15,7 @@ export function useAuth() {
         // Save token and profile name
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("profileName", response.data.name);
+        localStorage.setItem("userData", JSON.stringify(response.data));
         // Show toast before redirect
         console.log('Login successful! Redirecting to home...', 'Login Success', 'success');
         // Redirect after a short delay to allow toast to be seen
@@ -36,12 +37,12 @@ export function useAuth() {
       password: password,
       bio: "This is my NightNode bio",
       avatar: {
-        url: "https://i.postimg.cc/L6m0d8vW/Night-Node-6.webp",
-        alt: "Placeholder NightNode avatar"
+        url: "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400",
+        alt: "Placeholder avatar"
       },
       banner: {
-        url: "https://i.postimg.cc/26QyZws2/Night-Node-3.webp",
-        alt: "Placeholder NightNode banner"
+        url: "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400",
+        alt: "Placeholder banner"
       }
     };
 
@@ -69,9 +70,15 @@ export function useAuth() {
     }
   };
 
+  function getUserData() {
+    const userData = localStorage.getItem('userData');
+    return userData ? JSON.parse(userData) : null;
+  };
+
   function logout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('profileName');
+    localStorage.removeItem('userData');
     window.location.reload();
   };
 
@@ -87,6 +94,7 @@ export function useAuth() {
   return {
     login,
     register,
+    getUserData,
     isLoggedIn,
     logout,
     getToken,

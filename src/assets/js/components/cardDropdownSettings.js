@@ -1,0 +1,47 @@
+import { ellipsisIcon } from "./icons/ellipsisIcon";
+
+// Generates a unique id for each dropdown instance
+let dropdownIdCounter = 0;
+
+export function cardDropdownSettings() {
+  const dropdownId = `dropdown-${dropdownIdCounter++}`;
+
+  setTimeout(() => {
+    // Attach event listener for this dropdown instance
+    const btn = document.querySelector(`[data-dropdown-btn="${dropdownId}"]`);
+    if (btn) {
+      btn.addEventListener('click', function (event) {
+        const menu = document.querySelector(`[data-dropdown-menu="${dropdownId}"]`);
+        if (menu) {
+          // Hide all other dropdowns first
+          document.querySelectorAll('.card-dropdown').forEach(dropdown => {
+            if (dropdown !== menu) dropdown.classList.add('hidden');
+          });
+          menu.classList.toggle('hidden');
+        }
+        event.stopPropagation();
+      });
+    }
+  }, 0);
+
+  // Click outside closes all dropdowns
+  document.addEventListener('click', function () {
+    document.querySelectorAll('.card-dropdown').forEach(dropdown => dropdown.classList.add('hidden'));
+  });
+
+  return `
+    <div class="dropdown-wrapper relative inline-block">
+      <button type="button" class="dropbtn p-1 rounded focus:outline-none focus:ring-2 focus:ring-gray-muted focus:bg-surface-light" aria-label="More options" data-dropdown-btn="${dropdownId}">${ellipsisIcon}</button>
+      <div class="card-dropdown absolute right-0 mt-2 w-48 bg-surface-medium rounded-lg shadow-2xl z-10 hidden" data-dropdown-menu="${dropdownId}">
+        <ul class="py-1">
+          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Follow</li>
+          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">See profile</li>
+          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Add to saved</li>
+          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Go to post</li>
+          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Share post</li>
+          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer text-red-400 smooth-transition">Report</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}

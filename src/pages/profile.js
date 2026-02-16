@@ -2,13 +2,19 @@ import gradientImg from '../../src/assets/images/gradient.jpg';
 import { editIcon } from '../assets/js/components/icons/editIcon';
 import { likeIcon } from "../assets/js/components/icons/likeIcon";
 import { commentIcon } from "../assets/js/components/icons/commentIcon";
+import { useAuth } from '../assets/js/utils/useAuth';
+
 
 export function profile() {
   const profileName = localStorage.getItem('profileName') || 'User';
+  const auth = useAuth();
+  const currentUserAvatar = auth.getUserData()?.avatar?.url || gradientImg;
+  const currentUserAlt = auth.getUserData()?.avatar?.alt || 'User Avatar';
+
   return `
     <div class="flex items-center gap-6 mb-10">
       <div class="relative">
-        <img src="${gradientImg}" alt="Profile Avatar" class="rounded-full w-30 h-30 mb-4">
+        <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-30 h-30 mb-4">
         <button class="absolute bottom-0 right-0 rounded-full p-2 bg-main-white text-main-black border-5 border-main-black">${editIcon}</button>
       </div>
       <div>

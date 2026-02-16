@@ -3,6 +3,8 @@ import { likeIcon } from "./icons/likeIcon";
 import { commentIcon } from "./icons/commentIcon";
 import { shareIcon } from "./icons/shareIcon";
 import { ellipsisIcon } from "./icons/ellipsisIcon";
+import { cardDropdownSettings } from "./cardDropdownSettings";
+import { useAuth } from '../utils/useAuth';
 
 /**
  * Source:
@@ -24,6 +26,11 @@ export function postCard(post) {
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  const auth = useAuth();
+  const currentUserAvatar = auth.getUserData()?.avatar?.url || gradientImg;
+  const currentUserAlt = auth.getUserData()?.avatar?.alt || 'User Avatar';
+
   return `
     <article class="card mb-6">
       <header class="flex items-start justify-between mb-5">
@@ -34,7 +41,7 @@ export function postCard(post) {
             <p class="text-gray-medium text-sm">${formattedDate}</p>
           </div>
         </div>
-        <button class="more-btn" aria-label="More options">${ellipsisIcon}</button>
+        ${cardDropdownSettings()}
       </header>
 
       <section class="text-main-white">
@@ -56,7 +63,7 @@ export function postCard(post) {
 
       <section>
         <form class="flex items-center gap-4">
-          <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-10 h-10">
+          <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10">
           <input
             type="text"
             placeholder="Write your comment"

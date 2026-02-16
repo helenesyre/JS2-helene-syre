@@ -4,6 +4,7 @@ import { videoIcon } from './icons/videoIcon';
 import { eventIcon } from './icons/eventIcon';
 import useModal from '../utils/useModal';
 import { createPostModal } from './createPostModal';
+import { useAuth } from '../utils/useAuth';
 
 export function createPostCard() {
   const { openModal } = useModal();
@@ -19,10 +20,14 @@ export function createPostCard() {
     }
   });
 
+  const auth = useAuth();
+  const currentUserAvatar = auth.getUserData()?.avatar?.url || gradientImg;
+  const currentUserAlt = auth.getUserData()?.avatar?.alt || 'User Avatar';
+
   return `
     <section class="card mb-6">
       <div class="flex items-center gap-4 mb-5">
-        <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-10 h-10">
+        <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10">
         <button id="open-create-post-modal" class="flex-1 text-left bg-surface-medium rounded-lg p-4 text-gray-medium text-sm hover:bg-surface-light hover:cursor-pointer smooth-transition">
           What's on your mind?
         </button>
