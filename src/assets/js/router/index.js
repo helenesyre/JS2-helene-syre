@@ -7,6 +7,7 @@ import { pageNotFound } from '../../../pages/pageNotFound.js';
 import { comingSoon } from '../../../pages/comingSoon.js';
 import cleanLayout from '../components/layouts/cleanLayout.js';
 import defaultLayout from '../components/layouts/defaultLayout.js';
+import { profileSidebar } from '../components/profileSidebar.js';
 import { renderNav } from '../components/navigation.js';
 
 /**
@@ -34,8 +35,12 @@ export function router() {
       element.className = '';
       element.innerHTML = cleanLayout(content); // Use clean layout for login and register pages
     } else {
-      element.className = 'flex flex-row justify-center mx-36'
-      element.innerHTML = defaultLayout(content); // Use default layout for all other pages
+      element.className = 'flex flex-row justify-center mx-36';
+      if (hash === '#/profile') {
+        element.innerHTML = defaultLayout(content, profileSidebar());
+      } else {
+        element.innerHTML = defaultLayout(content);
+      }
       document.getElementById('navbar').innerHTML = renderNav();
     }
   }
