@@ -7,7 +7,6 @@ export function setupRegisterFormListeners() {
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
-    console.log('Form submitted');
     document.querySelectorAll('.form_error').forEach(errorElement => errorElement.remove());
     // Validate form inputs
     const formData = new FormData(event.target);

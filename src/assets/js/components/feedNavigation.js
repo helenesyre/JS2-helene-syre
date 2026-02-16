@@ -5,15 +5,15 @@ export function feedNavigation() {
     <nav class="flex items-center justify-between mb-9">
       <!-- Left tabs -->
       <div class="flex items-center gap-3">
-        <button class="rounded-lg bg-main-neon px-4 py-2 text-sm font-medium text-black transition hover:cursor-pointer">
+        <button class="rounded-lg bg-main-neon px-4 py-2 text-sm font-medium text-black hover:cursor-pointer smooth-transition">
           Feed
         </button>
 
-        <button class="rounded-lg px-4 py-2 text-sm text-gray-light hover:text-white transition hover:cursor-pointer">
+        <button class="rounded-lg px-4 py-2 text-sm text-gray-light hover:text-white hover:cursor-pointer smooth-transition">
           Following
         </button>
 
-        <button class="rounded-lg px-4 py-2 text-sm text-gray-light hover:text-white transition hover:cursor-pointer">
+        <button class="rounded-lg px-4 py-2 text-sm text-gray-light hover:text-white hover:cursor-pointer smooth-transition">
           Explore
         </button>
       </div>

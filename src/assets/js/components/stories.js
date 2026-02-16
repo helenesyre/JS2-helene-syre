@@ -4,7 +4,7 @@ import { createIcon } from "./icons/createIcon";
 export function stories() {
   return `
     <section class="mb-10">
-      <h2 class="text-base mb-4 pb-2 border-b border-gray-medium">Stories</h2>
+      <h2 class="text-lg mb-4 pb-2 border-b border-gray-medium">Stories</h2>
       <div class="flex justify-between">
         <div class="flex flex-col items-center gap-2">
           <div class="rounded-full border-1 border-main-neon p-1 flex items-center justify-center">

@@ -3,7 +3,7 @@ import gradientImg from '../../images/gradient.jpg';
 export function suggestions() {
   return `
     <section class="mb-6">
-      <h2 class="text-base mb-4 pb-2 border-b border-gray-medium">Suggestions</h2>
+      <h2 class="text-lg mb-4 pb-2 border-b border-gray-medium">Suggestions</h2>
       <ul class="space-y-4">
         <li class="flex items-center gap-4">
           <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-8 h-8">
