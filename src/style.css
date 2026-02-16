@@ -11,6 +11,7 @@
   --color-input-bg-dark: #0C0B0E;
   --color-surface-dark: #1E1E1E;
   --color-surface-medium: #323232;
+  --color-surface-light: #464646;
 
   --font-roboto: "Roboto", sans-serif;
 }
@@ -20,6 +21,10 @@
     background-color: var(--color-surface-dark);
     border-radius: var(--radius-xl);
     padding: --spacing(6);
+  }
+
+  .smooth-transition {
+    @apply transition-all duration-300 ease-in-out;
   }
 }
 
