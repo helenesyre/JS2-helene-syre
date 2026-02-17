@@ -3,7 +3,7 @@ import { ellipsisIcon } from "./icons/ellipsisIcon";
 // Generates a unique id for each dropdown instance
 let dropdownIdCounter = 0;
 
-export function cardDropdownSettings() {
+export function cardDropdownSettings(post) {
   const dropdownId = `dropdown-${dropdownIdCounter++}`;
 
   setTimeout(() => {
@@ -37,11 +37,11 @@ export function cardDropdownSettings() {
           <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Follow</li>
           <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">See profile</li>
           <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Add to saved</li>
-          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Go to post</li>
+          <a href="#/post/${post.id}"><li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Go to post</li></a>
           <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Share post</li>
           <li class="px-4 py-2 hover:bg-surface-light cursor-pointer text-red-400 smooth-transition">Report</li>
         </ul>
       </div>
     </div>
   `;
-}
+};
