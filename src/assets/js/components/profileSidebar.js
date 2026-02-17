@@ -6,10 +6,6 @@ export function profileSidebar() {
   return `
     <section class="flex flex-col gap-6">
       <div class="card text-main-white">
-        <h2 class="text-lg mb-2">About</h2>
-        <p class="text-sm">This is your profile page. Here you can manage your posts, followers and account settings.</p>
-      </div>
-      <div class="card text-main-white">
         <h2 class="text-lg mb-2">Profile Actions</h2>
         <ul>
           <li class="flex items-center gap-2 p-3 rounded-lg hover:cursor-pointer hover:bg-surface-medium smooth-transition">${editIcon}Edit Profile</li>
@@ -19,4 +15,4 @@ export function profileSidebar() {
       </div>
     </section>
   `;
-}
+};
