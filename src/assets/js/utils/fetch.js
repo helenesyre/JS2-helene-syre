@@ -3,10 +3,11 @@ import { useFetch } from './useFetch.js';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-export async function getAllPosts() {
+// All posts
+export async function getAllPosts(page = 1) {
   const auth = useAuth();
   const token = auth.getToken();
-  const data = await useFetch('/social/posts?_author=true&_comments=true&_reactions=true', {
+  const data = await useFetch(`/social/posts?_author=true&_comments=true&_reactions=true&page=${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -17,10 +18,11 @@ export async function getAllPosts() {
   return data;
 };
 
+// Single post by ID
 export async function getPostById(id) {
   const auth = useAuth();
   const token = auth.getToken();
-  const data = await useFetch(`/social/posts/${id}`, {
+  const data = await useFetch(`/social/posts/${id}?_author=true&_comments=true&_reactions=true`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -31,6 +33,7 @@ export async function getPostById(id) {
   return data;
 };
 
+// All posts from followed profiles
 export async function getAllFollowingPosts() {
   const auth = useAuth();
   const token = auth.getToken();
@@ -64,7 +67,7 @@ export async function getAllProfiles() {
 export async function getProfileData(profileName) {
   const auth = useAuth();
   const token = auth.getToken();
-  const data = await useFetch(`/social/profiles/${profileName}`, {
+  const data = await useFetch(`/social/profiles/${profileName}?_following=true&_followers=true`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -79,21 +82,111 @@ export async function getProfileData(profileName) {
 
 
 // Create post
-
+export async function createPost(postData) {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch('/social/posts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+    body: JSON.stringify(postData)
+  });
+  return data;
+};
 
 // Update post
-
+export async function updatePost(postId, postData) {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch(`/social/posts/${postId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+    body: JSON.stringify(postData)
+  });
+  return data;
+};
 
 // Delete post
-
+export async function deletePost(postId) {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch(`/social/posts/${postId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+  });
+  return data;
+};
 
 // All posts by profile
-
+export async function getPostsByProfile(profileName) {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch(`/social/profiles/${profileName}/posts`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+  });
+  return data;
+};
 
 // Search posts
-
+export async function searchPosts(query) {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch(`/social/posts?search=${encodeURIComponent(query)}&_author=true&_comments=true&_reactions=true`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+  });
+  return data;
+};
 
 // Follow & Unfollow profile
+export async function followProfile(profileName) {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch(`/social/profiles/${profileName}/follow`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+
+  });
+  return data;
+};
+
+export async function unfollowProfile(profileName) {
+  const auth = useAuth();
+  const token = auth.getToken();
+  const data = await useFetch(`/social/profiles/${profileName}/unfollow`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      "X-Noroff-API-Key": API_KEY
+    },
+  });
+  return data;
+};
 
 
 // React to post (GROUP TASK)

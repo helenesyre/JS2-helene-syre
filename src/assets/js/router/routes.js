@@ -13,7 +13,7 @@ export const routes = [
     view: home,
   },
   {
-    path: /^#\/profile$/,
+    path: /^#\/profile\/(\w+)/,
     view: profile,
     sidebar: profileSidebar,
   },

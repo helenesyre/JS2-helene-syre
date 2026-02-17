@@ -32,13 +32,15 @@ export function postCard(post) {
   return `
     <article class="card mb-6">
       <header class="flex items-start justify-between mb-5">
-        <div class="flex items-center gap-3">
-          <img data-src="${post.author.avatar.url}" alt="${avatarImgAlt}" class="rounded-full w-10 h-10 lazyload">
-          <div>
-            <h2 class="text-main-white text-base">${post.author.name}</h2>
-            <p class="text-gray-medium text-sm">${formattedDate}</p>
+        <a href="#/profile/${post.author.name}">
+          <div class="flex items-center gap-3">
+            <img data-src="${post.author.avatar.url}" alt="${avatarImgAlt}" class="rounded-full w-10 h-10 lazyload">
+            <div>
+              <h2 class="text-main-white text-base">${post.author.name}</h2>
+              <p class="text-gray-medium text-sm">${formattedDate}</p>
+            </div>
           </div>
-        </div>
+        </a>
         ${cardDropdownSettings(post)}
       </header>
 

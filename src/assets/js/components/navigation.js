@@ -7,16 +7,19 @@ import { createIcon } from "./icons/createIcon";
 import { profileIcon } from "./icons/profileIcon";
 import useModal from "../utils/useModal";
 import { createPostModal } from "./createPostModal";
+import { useAuth } from "../utils/useAuth";
 
 export function renderNav() {
   const currentHash = window.location.hash || '#/';
+  const auth = useAuth();
+  const userdata = auth.getUserData();
   const links = [
     { href: '#/', label: 'Home', icon: homeIcon },
     { href: '#/messages', label: 'Messages', icon: messageIcon },
     { href: '#/saved-posts', label: 'Saved Posts', icon: savedPostsIcon },
     { href: '#/notifications', label: 'Notifications', icon: notificationsIcon },
     { href: '#/create', label: 'Create', icon: createIcon },
-    { href: '#/profile', label: 'Profile', icon: profileIcon },
+    { href: `#/profile/${userdata.name}`, label: 'Profile', icon: profileIcon },
   ];
 
   const { openModal } = useModal();
