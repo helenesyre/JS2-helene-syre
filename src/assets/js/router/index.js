@@ -1,49 +1,51 @@
-import { home } from '../../../pages/home.js';
-import { profile } from '../../../pages/profile.js';
-import { postPage } from '../../../pages/postPage.js';
-import { register } from '../../../pages/register.js';
-import { login } from '../../../pages/login.js';
-import { pageNotFound } from '../../../pages/pageNotFound.js';
-import { comingSoon } from '../../../pages/comingSoon.js';
-import cleanLayout from '../components/layouts/cleanLayout.js';
 import defaultLayout from '../components/layouts/defaultLayout.js';
-import { profileSidebar } from '../components/profileSidebar.js';
 import { renderNav } from '../components/navigation.js';
+import { routes } from './routes.js';
+import { pageNotFound } from '../../../pages/pageNotFound.js';
+import cleanLayout from '../components/layouts/cleanLayout.js';
+import { useAuth } from '../utils/useAuth.js';
 
-/**
- * Source: Code from my portfolio project
- */
 export function router() {
-  const routes = {
-    '#/': home,
-    '#/profile': profile,
-    '#/postPage': postPage,
-    '#/register': register,
-    '#/login': login,
-    '#/comingSoon': comingSoon,
-    '#/saved-posts': comingSoon,
-    '#/messages': comingSoon,
-    '#/notifications': comingSoon,
-    '#/create': comingSoon,
-  };
-
   async function handleRoute() {
     const hash = window.location.hash || '#/'; // Default to home if no hash
-    const content = routes[hash] ? await routes[hash]() : pageNotFound(); // Get the content for the current route or show 404
+    let routeFound = false;
     const element = document.getElementById('app');
-    if (hash === '#/login' || hash === '#/register') {
-      element.className = '';
-      element.innerHTML = cleanLayout(content); // Use clean layout for login and register pages
-    } else {
-      element.className = 'flex flex-row justify-center mx-36';
-      if (hash === '#/profile') {
-        element.innerHTML = defaultLayout(content, profileSidebar());
-      } else {
-        element.innerHTML = defaultLayout(content);
+
+    for (const route of routes) {
+      // Check if the current hash matches the route's path regex
+      if (route.path.test(hash)) {
+        routeFound = true;
+        const content = await route.view();
+        element.className = route.noContentClass ? '' : 'flex flex-row justify-center mx-36';
+        // If the route has a custom layout, use it. Otherwise, use the default layout with or without sidebar.
+        if (route.layout) {
+          element.innerHTML = route.layout(content);
+        } else {
+          if (route.sidebar) {
+            element.innerHTML = defaultLayout(content, route.sidebar());
+          } else {
+            element.innerHTML = defaultLayout(content);
+          }
+        }
+        document.getElementById('navbar').innerHTML = renderNav();
+        return;
       }
-      document.getElementById('navbar').innerHTML = renderNav();
     }
-  }
+
+    // Handle 404 - If no route matches, show the page not found view
+    if (!routeFound) {
+      element.className = 'flex flex-row justify-center mx-36';
+      const content = pageNotFound();
+      const auth = useAuth();
+      // If the user is logged in, show the default layout with navbar. Otherwise, show the clean layout without navbar.
+      if (auth.isLoggedIn()) {
+        element.innerHTML = defaultLayout(content);
+        document.getElementById('navbar').innerHTML = renderNav();
+      } else {
+        element.innerHTML = cleanLayout(content);
+      }
+    }
+  };
 
   // Listen for navigation events
   window.addEventListener('hashchange', handleRoute); // Handle the initial route when the page loads
