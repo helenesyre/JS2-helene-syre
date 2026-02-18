@@ -49,12 +49,12 @@ export async function profile() {
     const followButton = document.createElement('button');
 
     followButton.textContent = isFollowing ? 'Unfollow' : 'Follow';
-    followButton.className = `px-4 py-2 rounded-lg cursor-pointer ${isFollowing ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`;
+    followButton.className = `px-4 py-2 rounded-lg cursor-pointer smooth-transition ${isFollowing ? 'bg-surface-medium text-main-white' : 'bg-main-neon text-main-black'}`;
 
     followButton.addEventListener('click', async () => {
       await toggleFollow();
       followButton.textContent = isFollowing ? 'Follow' : 'Unfollow';
-      followButton.className = `px-4 py-2 rounded-lg cursor-pointer ${isFollowing ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`;
+      followButton.className = `px-4 py-2 rounded-lg cursor-pointer smooth-transition ${isFollowing ? 'bg-main-neon text-main-white' : 'bg-surface-medium text-main-white'}`;
     });
     if (auth.getUserData()?.name !== profile.data.name) {
       const sidebar = document.getElementById('sidebar');
@@ -85,7 +85,7 @@ export async function profile() {
         </div>
       </div>
     </div>
-    <div id="posts" class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+    <div id="posts" class="grid grid-cols-1 ${posts.data.length > 0 ? 'sm:grid-cols-2' : 'sm:grid-cols-1'} gap-6 mt-6">
       ${posts.data.length > 0 ? posts.data.map(post => `
         <a href="#/post/${post.id}">
           <article class="card flex flex-col justify-between h-full hover:bg-surface-medium hover:cursor-pointer smooth-transition">

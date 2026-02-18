@@ -34,8 +34,7 @@ export function cardDropdownSettings(post) {
       <button type="button" class="dropbtn p-1 rounded focus:outline-none focus:ring-2 focus:ring-gray-muted focus:bg-surface-light" aria-label="More options" data-dropdown-btn="${dropdownId}">${ellipsisIcon}</button>
       <div class="card-dropdown absolute right-0 mt-2 w-48 bg-surface-medium rounded-lg shadow-2xl z-10 hidden" data-dropdown-menu="${dropdownId}">
         <ul class="py-1">
-          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Follow</li>
-          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">See profile</li>
+          <a href="#/profile/${post.author.name}"><li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">See profile</li></a>
           <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Add to saved</li>
           <a href="#/post/${post.id}"><li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Go to post</li></a>
           <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Share post</li>

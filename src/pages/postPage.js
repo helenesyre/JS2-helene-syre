@@ -47,12 +47,18 @@ export async function postPage() {
     hour: "2-digit",
     minute: "2-digit",
   });
+  const formattedCommentDate = (commentDate) => new Date(commentDate).toLocaleDateString('no-NO', {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   const auth = useAuth();
   const currentUserAvatar = auth.getUserData()?.avatar?.url || gradientImg;
   const currentUserAlt = auth.getUserData()?.avatar?.alt || 'User Avatar';
 
   return `
-
     <article class="card mb-6">
       <header class="flex items-start justify-between mb-5">
       <a href="#/profile/${postData.author.name}">
@@ -83,7 +89,26 @@ export async function postPage() {
         <button class="flex items-center gap-2">${shareIcon} Share</button>
       </footer>
 
-      <section>
+      <section class="border-t border-surface-light pt-5">
+        <h3 class="text-lg font-medium text-main-white mb-4">Comments</h3>
+        ${postData.comments && postData.comments.length > 0 ? postData.comments.map(comment => `
+          <div class="mb-4">
+            <div class="flex items-start gap-3 mb-2">
+              <img src="${comment.author.avatar.url}" alt="${comment.author.avatar.alt || 'User Avatar'}" class="rounded-full w-10 h-10">
+              <div>
+                <div class="flex gap-1 bg-surface-medium py-2 px-3 rounded-lg items-center">
+                  <p class="font-semibold text-main-neon">${comment.author.name}</p>
+                  <p>${comment.body}</p>
+                </div>
+                <p class="text-gray-light text-sm mt-1">${formattedCommentDate(comment.created)}</p>
+              </div>
+            </div>
+          </div>
+          `).join('')
+      : `<p class="text-gray-light text-center pb-10 pt-2">No comments yet</p>`}
+      </section>
+
+      <section class="border-t border-surface-light pt-5">
         <form class="flex items-center gap-4">
           <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10">
           <input
