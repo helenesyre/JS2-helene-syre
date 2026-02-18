@@ -1,6 +1,16 @@
 import { editIcon } from './icons/editIcon.js';
 import { settingsIcon } from './icons/settingsIcon.js';
 import { logoutIcon } from './icons/logoutIcon.js';
+import { useAuth } from '../utils/useAuth.js';
+
+const auth = useAuth();
+// Add event listener for logout button using event delegation
+document.addEventListener('click', function (event) {
+  if (event.target.closest('#logout-button')) {
+    auth.logout(); // Clear user data and tokens from localStorage
+    window.location.hash = '#/login';
+  }
+});
 
 export function profileSidebar() {
   return `
@@ -10,7 +20,7 @@ export function profileSidebar() {
         <ul>
           <li class="flex items-center gap-2 p-3 rounded-lg hover:cursor-pointer hover:bg-surface-medium smooth-transition">${editIcon}Edit Profile</li>
           <li class="flex items-center gap-2 p-3 rounded-lg hover:cursor-pointer hover:bg-surface-medium smooth-transition">${settingsIcon}Settings</li>
-          <li class="flex items-center gap-2 p-3 rounded-lg hover:cursor-pointer hover:bg-surface-medium text-red-400 smooth-transition">${logoutIcon}Logout</li>
+          <li id="logout-button" class="flex items-center gap-2 p-3 rounded-lg hover:cursor-pointer hover:bg-surface-medium text-red-400 smooth-transition">${logoutIcon}Logout</li>
         </ul>
       </div>
     </section>
