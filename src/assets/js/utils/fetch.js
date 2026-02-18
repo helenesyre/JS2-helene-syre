@@ -117,7 +117,7 @@ export async function updatePost(postId, postData) {
 export async function deletePost(postId) {
   const auth = useAuth();
   const token = auth.getToken();
-  const data = await useFetch(`/social/posts/${postId}`, {
+  await useFetch(`/social/posts/${postId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ export async function deletePost(postId) {
       "X-Noroff-API-Key": API_KEY
     },
   });
-  return data;
+  return;
 };
 
 // All posts by profile

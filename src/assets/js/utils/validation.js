@@ -59,3 +59,16 @@ export function validationErrorMessageHTML(message = "Validation error") {
   </div>
 `;
 };
+
+/**
+ * Source from: https://www.freecodecamp.org/news/how-to-validate-urls-in-javascript/
+ * Date accessed: 18.02.2026
+ */
+export function validateImgUrl(url) {
+  try {
+    const newUrl = new URL(url);
+    return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';
+  } catch (err) {
+    return false;
+  }
+}

@@ -3,7 +3,7 @@ export default function useModal() {
 
   function openModal(content) {
     const modal = document.getElementById('modal');
-    modal.innerHTML = content;
+    modal.appendChild(content)
     modal.classList.remove('hidden');
     isOpen = true;
   }

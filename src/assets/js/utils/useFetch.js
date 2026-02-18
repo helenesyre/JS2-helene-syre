@@ -18,8 +18,12 @@ export async function useFetch(url, options = {}) {
       }
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    if (response.status === 204) {
+      return; // No content to return
+    }
     return await response.json();
   } catch (error) {
+    // Add toast later with errror message
     throw error;
   };
 };
