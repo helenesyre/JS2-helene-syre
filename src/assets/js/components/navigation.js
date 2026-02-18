@@ -19,7 +19,7 @@ export function renderNav() {
     { href: '#/saved-posts', label: 'Saved Posts', icon: savedPostsIcon },
     { href: '#/notifications', label: 'Notifications', icon: notificationsIcon },
     { href: '#/create', label: 'Create', icon: createIcon },
-    { href: `#/profile/${userdata.name}`, label: 'Profile', icon: profileIcon },
+    { href: `#/profile/${userdata?.name}`, label: 'Profile', icon: profileIcon },
   ];
 
   const { openModal } = useModal();
