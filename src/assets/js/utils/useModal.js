@@ -3,9 +3,11 @@ export default function useModal() {
 
   function openModal(content) {
     const modal = document.getElementById('modal');
-    modal.appendChild(content)
-    modal.classList.remove('hidden');
-    isOpen = true;
+    if (modal.innerHTML === '') {
+      modal.appendChild(content)
+      modal.classList.remove('hidden');
+      isOpen = true;
+    }
   }
 
   function closeModal() {
