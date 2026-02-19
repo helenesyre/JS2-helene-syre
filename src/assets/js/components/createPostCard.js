@@ -3,7 +3,7 @@ import { imageIcon } from './icons/imageIcon';
 import { videoIcon } from './icons/videoIcon';
 import { eventIcon } from './icons/eventIcon';
 import useModal from '../utils/useModal';
-import { createPostModal } from './createPostModal';
+import { createPostModal } from './modals/createPostModal';
 import { useAuth } from '../utils/useAuth';
 
 export function createPostCard() {

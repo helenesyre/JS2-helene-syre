@@ -1,8 +1,8 @@
-import useModal from "../utils/useModal";
-import { closeIcon } from './icons/closeIcon';
-import { infoIcon } from "./icons/infoIcon";
-import { createPost } from "../utils/fetch.js";
-import { validateImgUrl } from "../utils/validation.js";
+import useModal from '../../utils/useModal.js';
+import { closeIcon } from '../icons/closeIcon.js';
+import { infoIcon } from "../icons/infoIcon";
+import { createPost } from "../../utils/fetch.js";
+import { validateImgUrl } from "../../utils/validation.js";
 
 export function createPostModal() {
   const { closeModal } = useModal();

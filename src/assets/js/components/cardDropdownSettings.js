@@ -1,6 +1,8 @@
 import { ellipsisIcon } from "./icons/ellipsisIcon";
 import { useAuth } from '../utils/useAuth';
 import { deletePost } from "../utils/fetch";
+import { createEditPostModal } from './modals/createEditPostModal';
+import useModal from "../utils/useModal";
 
 // Generates a unique id for each dropdown instance
 let dropdownIdCounter = 0;
@@ -34,6 +36,10 @@ export function cardDropdownSettings(post) {
           await deletePost(post.id);
           window.location.reload();
         }
+        if (event.target.dataset.dropdownAction === 'edit') {
+          const modalContent = createEditPostModal(post);
+          useModal().openModal(modalContent);
+        }
       });
     }
   }, 0);
@@ -64,7 +70,7 @@ export function cardDropdownSettings(post) {
       <button type="button" class="dropbtn p-1 rounded focus:outline-none focus:ring-2 focus:ring-gray-muted focus:bg-surface-light" aria-label="More options" data-dropdown-btn="${dropdownId}">${ellipsisIcon}</button>
       <div class="card-dropdown absolute right-0 mt-2 w-48 bg-surface-medium rounded-lg shadow-2xl z-10 hidden" data-dropdown-menu="${dropdownId}">
         <ul class="py-1" id="dropdown-menu-actions">
-          <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Edit</li>
+          <li data-dropdown-action="edit" class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Edit</li>
           <a href="#/post/${post.id}"><li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Go to post</li></a>
           <li class="px-4 py-2 hover:bg-surface-light cursor-pointer smooth-transition">Share post</li>
           <li data-dropdown-action="delete" class="px-4 py-2 hover:bg-surface-light cursor-pointer text-red-400 smooth-transition">Delete</li>
