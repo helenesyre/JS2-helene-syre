@@ -6,7 +6,7 @@ import { notificationsIcon } from "./icons/noticifationsIcon";
 import { createIcon } from "./icons/createIcon";
 import { profileIcon } from "./icons/profileIcon";
 import useModal from "../utils/useModal";
-import { createPostModal } from "./createPostModal";
+import { createPostModal } from "./modals/createPostModal";
 import { useAuth } from "../utils/useAuth";
 
 export function renderNav() {
