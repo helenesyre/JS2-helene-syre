@@ -15,6 +15,7 @@ export function cardDropdownSettings(post) {
     // Attach event listener for this dropdown instance
     const btn = document.querySelector(`[data-dropdown-btn="${dropdownId}"]`);
     const dropdownMenu = document.querySelector(`[data-dropdown-menu="${dropdownId}"]`);
+    if (!btn || !dropdownMenu) return; // If elements are not found, exit early
     const dropdownMenuActions = dropdownMenu.querySelector(`#dropdown-menu-actions`);
     if (btn) {
       btn.addEventListener('click', function (event) {
