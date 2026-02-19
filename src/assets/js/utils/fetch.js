@@ -34,10 +34,10 @@ export async function getPostById(id) {
 };
 
 // All posts from followed profiles
-export async function getAllFollowingPosts() {
+export async function getAllFollowingPosts(page = 1) {
   const auth = useAuth();
   const token = auth.getToken();
-  const data = await useFetch('/social/posts/following', {
+  const data = await useFetch(`/social/posts/following?&_author=true&_comments=true&_reactions=true&page=${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -144,10 +144,14 @@ export async function getPostsByProfile(profileName) {
 };
 
 // Search posts
-export async function searchPosts(query) {
+export async function searchPosts(query, page = 1) {
   const auth = useAuth();
   const token = auth.getToken();
-  const data = await useFetch(`/social/posts?search=${encodeURIComponent(query)}&_author=true&_comments=true&_reactions=true`, {
+  /**
+   * Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+   * info collected: 19. feb 2026
+   */
+  const data = await useFetch(`/social/posts/search/?q=${encodeURIComponent(query)}&_author=true&_comments=true&_reactions=true&page=${page}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

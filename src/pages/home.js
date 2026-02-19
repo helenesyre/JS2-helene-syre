@@ -1,39 +1,22 @@
-import { feedNavigation } from "../assets/js/components/feedNavigation";
 import { createPostCard } from "../assets/js/components/createPostCard";
 import { postCard } from "../assets/js/components/postCard";
-import { getAllPosts } from "../assets/js/utils/fetch";
+import { getAllFollowingPosts, getAllPosts, searchPosts } from "../assets/js/utils/fetch";
+import { useObserver } from "../assets/js/utils/useObserver";
+import { searchIcon } from "../assets/js/components/icons/searchIcon";
+import { debounce } from "../assets/js/utils/debounce";
 
-/**
- * Source from corriculim: Lazy Loading with IntersectionObserver
- */
 export async function home() {
-  // IntersectionObserver options to trigger loading images when they are about to enter the viewport
-  const observerOptions = {
-    root: null, // use the viewport
-    rootMargin: '0px 0px 200px 0px', // trigger 200px before it enters viewport
-  };
-
-  // IntersectionObserver callback function to load images when they intersect with the viewport
-  function handleIntersection(entries, observer) {
-    entries.forEach((entry) => { // Check if the image is intersecting with the viewport
-      if (entry.isIntersecting) {
-        const image = entry.target;
-        image.src = image.dataset.src; // Set the src attribute to the value of data-src to load the image
-        image.classList.remove('lazyload');
-        observer.unobserve(image); // Stop observing the image since it has been loaded
-      }
-    });
-  };
-
-  // IntersectionObserver instance to keep track of images with the lazyload class and trigger loading when they enter the viewport
-  const observer = new IntersectionObserver(
-    handleIntersection,
-    observerOptions,
-  );
+  const observer = useObserver();
+  const tabs = [
+    { id: 'feed-tab', label: 'Feed' },
+    { id: 'following-tab', label: 'Following' }
+  ];
 
   // Variables to keep track of the current page and loading state for infinite scrolling
   let page = 1;
+  let totalPages = 1; // This will be set based on the API response to know when to stop fetching more posts
   let isLoading = false;
+  let selectedTab = 'feed-tab';
 
   // Function to fetch posts and append them to the container when the user scrolls near the bottom of the page
   async function fetchDataOnScroll() {
@@ -44,12 +27,31 @@ export async function home() {
 
     try {
       // Fetch posts for the current page
-      const posts = await getAllPosts(page);
+      // switch between getAllPosts, getAllFollowingPosts, searchPosts to test different endpoints
+      let posts;
+      switch (selectedTab) {
+        case 'feed-tab':
+          posts = await getAllPosts(page);
+          break;
+        case 'following-tab':
+          posts = await getAllFollowingPosts(page);
+          break;
+        case 'search':
+          const searchInput = document.getElementById('search-input');
+          posts = await searchPosts(searchInput.value, page);
+          break;
+        default:
+          posts = await getAllPosts(page);
+      }
+
+      // Update totalPages based on the API response to know when to stop fetching more posts
+      totalPages = posts.meta.pageCount;
 
       // Append each post to the container using the postCard component
       posts.data.forEach(item => {
         const div = document.createElement('div');
         // Set the innerHTML of the div to the postCard component with the post data
+        // TODO: Sanitize the post data to prevent XSS attacks by escaping special characters
         div.innerHTML = postCard(item);
         container.appendChild(div);
       });
@@ -58,9 +60,10 @@ export async function home() {
       const lazyImages = document.querySelectorAll('.lazyload');
       lazyImages.forEach((image) => observer.observe(image));
 
-      // Increment the page number for the next fetch
+      // Increment the page number for the next fetch when the user scrolls near the bottom again
       page++;
     } catch (error) {
+      // add toast and remove console.error later
       console.error(error);
     } finally {
       // Set isLoading back to false after the fetch is complete, regardless of success or failure
@@ -71,17 +74,73 @@ export async function home() {
   // Listen for scroll events to trigger loading more posts when the user scrolls near the bottom of the page
   window.addEventListener('scroll', () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-      fetchDataOnScroll();
+      if (!isLoading && page <= totalPages) {
+        fetchDataOnScroll();
+      }
     }
   });
+
+  const clearContent = () => {
+    page = 1;
+    document.getElementById('posts-container').innerHTML = '';
+  };
 
   setTimeout(() => {
     // Initial fetch of posts on page load
     fetchDataOnScroll();
+    const feedTab = document.getElementById('feed-tab');
+    const followingTab = document.getElementById('following-tab');
+
+    feedTab.addEventListener('click', () => {
+      selectedTab = 'feed-tab';
+      clearContent(); // Clear current posts and reset page number
+      fetchDataOnScroll(); // Fetch posts for the selected tab
+    });
+
+    followingTab.addEventListener('click', () => {
+      selectedTab = 'following-tab';
+      clearContent(); // Clear current posts and reset page number
+      fetchDataOnScroll(); // Fetch posts for the selected tab
+    });
+
+    // Debounce the search input to prevent excessive API calls while typing, and clear content when searching
+    const debouncedFetch = debounce(fetchDataOnScroll, 400, clearContent);
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value.trim() === '') {
+        selectedTab = 'feed-tab'; // Reset to feed tab when search input is cleared
+      } else {
+        selectedTab = 'search'; // Set selected tab to search when there is input
+      }
+      debouncedFetch();
+    });
   }, 0);
 
   return `
-    ${feedNavigation()}
+    <nav class="flex items-center justify-between mb-9">
+      <!-- Left tabs -->
+      <div class="flex items-center gap-3">
+        ${tabs.map(tab => `
+          <button id="${tab.id}" class="tab rounded-lg bg-main-neon px-4 py-2 text-sm font-medium text-black hover:cursor-pointer smooth-transition">
+            ${tab.label}
+          </button>
+        `).join('')}
+      </div>
+
+      <!-- Search -->
+      <div class="relative">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-medium">${searchIcon}</span>
+        <input
+          type="text"
+          placeholder="Search"
+          id="search-input"
+          name="search"
+          aria-label="Search posts"
+          class="w-56 rounded-lg border border-gray-dark bg-input-bg-dark px-4 py-2 pl-10 text-sm text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted"
+        />
+      </div>
+    </nav>
     <div class="max-w-xl">
       <h1 class="sr-only">Welcome to Your Feed</h1>
       ${createPostCard()}
