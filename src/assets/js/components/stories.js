@@ -16,13 +16,13 @@ export function stories() {
         </div>
         <div class="flex flex-col items-center gap-2">
           <div class="rounded-full border-1 border-main-neon p-1 flex items-center justify-center">
-            <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-12 h-12">
+            <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-12 h-12 object-cover">
           </div>
           <p class="text-sm text-gray-light"> Story 2 </p>
         </div>
         <div class="flex flex-col items-center gap-2">
           <div class="rounded-full border-1 border-main-neon p-1 flex items-center justify-center">
-            <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-12 h-12">
+            <img src="${gradientImg}" alt="User Avatar" class="rounded-full w-12 h-12 object-cover">
           </div>
           <p class="text-sm text-gray-light"> Story 3 </p>
         </div>

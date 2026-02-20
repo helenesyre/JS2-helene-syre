@@ -34,7 +34,7 @@ export function postCard(post) {
       <header class="flex items-start justify-between mb-5">
         <a href="#/profile/${post.author.name}">
           <div class="flex items-center gap-3">
-            <img data-src="${post.author.avatar.url}" alt="${avatarImgAlt}" class="rounded-full w-10 h-10 lazyload">
+            <img data-src="${post.author.avatar.url}" alt="${avatarImgAlt}" class="rounded-full w-10 h-10 lazyload object-cover">
             <div>
               <h2 class="text-main-white text-base">${post.author.name}</h2>
               <p class="text-gray-medium text-sm">${formattedDate}</p>
@@ -70,7 +70,7 @@ export function postCard(post) {
 
       <section>
         <form class="flex items-center gap-4">
-          <img data-src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10 lazyload">
+          <img data-src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10 lazyload object-cover">
           <input
             type="text"
             placeholder="Write your comment"

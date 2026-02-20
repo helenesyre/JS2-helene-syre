@@ -70,7 +70,7 @@ export async function profile() {
   return `
     <div class="flex items-center gap-6 mb-10">
       <div class="relative">
-        <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-40 h-40 mb-4">
+        <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-40 h-40 mb-4 object-cover">
         ${auth.getUserData()?.name === profile.data.name ? `<button class="absolute bottom-0 right-0 rounded-full p-2 bg-main-white text-main-black border-5 border-main-black">${editIcon}</button>` : ''}
       </div>
       <div>

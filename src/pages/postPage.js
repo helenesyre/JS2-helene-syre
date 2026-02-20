@@ -63,7 +63,7 @@ export async function postPage() {
       <header class="flex items-start justify-between mb-5">
       <a href="#/profile/${postData.author.name}">
         <div class="flex items-center gap-3">
-          <img src="${postData.author.avatar.url}" alt="${avatarImgAlt}" class="rounded-full w-10 h-10">
+          <img src="${postData.author.avatar.url}" alt="${avatarImgAlt}" class="rounded-full w-10 h-10 object-cover">
           <div>
             <h2 class="text-main-white text-base">${postData.author.name}</h2>
             <p class="text-gray-medium text-sm">${formattedDate}</p>
@@ -94,7 +94,7 @@ export async function postPage() {
         ${postData.comments && postData.comments.length > 0 ? postData.comments.map(comment => `
           <div class="mb-4">
             <div class="flex items-start gap-3 mb-2">
-              <img src="${comment.author.avatar.url}" alt="${comment.author.avatar.alt || 'User Avatar'}" class="rounded-full w-10 h-10">
+              <img src="${comment.author.avatar.url}" alt="${comment.author.avatar.alt || 'User Avatar'}" class="rounded-full w-10 h-10 object-cover">
               <div>
                 <div class="flex gap-1 bg-surface-medium py-2 px-3 rounded-lg items-center">
                   <p class="font-semibold text-main-neon">${comment.author.name}</p>
@@ -110,7 +110,7 @@ export async function postPage() {
 
       <section class="border-t border-surface-light pt-5">
         <form class="flex items-center gap-4">
-          <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10">
+          <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10 object-cover">
           <input
             type="text"
             placeholder="Write your comment"

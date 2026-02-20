@@ -27,7 +27,7 @@ export function createPostCard() {
   return `
     <section class="card mb-6">
       <div class="flex items-center gap-4 mb-5">
-        <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10">
+        <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-10 h-10 object-cover">
         <button id="open-create-post-modal" class="flex-1 text-left bg-surface-medium rounded-lg p-4 text-gray-medium text-sm hover:bg-surface-light hover:cursor-pointer smooth-transition">
           What's on your mind?
         </button>
