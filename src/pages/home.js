@@ -93,15 +93,30 @@ export async function home() {
 
     feedTab.addEventListener('click', () => {
       selectedTab = 'feed-tab';
+      updateTabStyles();
       clearContent(); // Clear current posts and reset page number
       fetchDataOnScroll(); // Fetch posts for the selected tab
     });
 
     followingTab.addEventListener('click', () => {
       selectedTab = 'following-tab';
+      updateTabStyles();
       clearContent(); // Clear current posts and reset page number
       fetchDataOnScroll(); // Fetch posts for the selected tab
     });
+
+    function updateTabStyles() {
+      const tabButtons = document.querySelectorAll('.tab');
+      tabButtons.forEach(btn => {
+        if (btn.id === selectedTab) {
+          btn.classList.add('bg-main-neon', 'text-black');
+          btn.classList.remove('text-gray-light', 'hover:bg-main-white', 'hover:text-main-black');
+        } else {
+          btn.classList.remove('bg-main-neon', 'text-black');
+          btn.classList.add('text-gray-light', 'hover:bg-main-white', 'hover:text-main-black');
+        }
+      });
+    }
 
     // Debounce the search input to prevent excessive API calls while typing, and clear content when searching
     const debouncedFetch = debounce(fetchDataOnScroll, 400, clearContent);
@@ -113,23 +128,28 @@ export async function home() {
       } else {
         selectedTab = 'search'; // Set selected tab to search when there is input
       }
+      // Updates tab styles when on search
+      updateTabStyles();
       debouncedFetch();
     });
+
+    // Set initial tab styles
+    updateTabStyles();
   }, 0);
 
   return `
-    <nav class="flex items-center justify-between mb-9">
+    <nav class="flex flex-col md:flex-row gap-3 items-center justify-between mb-6 lg:mb-9">
       <!-- Left tabs -->
       <div class="flex items-center gap-3">
         ${tabs.map(tab => `
-          <button id="${tab.id}" class="tab rounded-lg bg-main-neon px-4 py-2 text-sm font-medium text-black hover:cursor-pointer smooth-transition">
+          <button id="${tab.id}" class="tab rounded-lg px-4 py-2 text-sm font-medium hover:cursor-pointer smooth-transition">
             ${tab.label}
           </button>
         `).join('')}
       </div>
 
       <!-- Search -->
-      <div class="relative">
+      <div class="relative w-full md:w-auto">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-medium">${searchIcon}</span>
         <input
           type="text"
@@ -137,14 +157,14 @@ export async function home() {
           id="search-input"
           name="search"
           aria-label="Search posts"
-          class="w-56 rounded-lg border border-gray-dark bg-input-bg-dark px-4 py-2 pl-10 text-sm text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted"
+          class="w-full md:w-80 lg:w-56 rounded-lg border border-gray-dark bg-input-bg-dark px-4 py-2 pl-10 text-sm text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted"
         />
       </div>
     </nav>
-    <div class="max-w-xl">
+    <div>
       <h1 class="sr-only">Welcome to Your Feed</h1>
       ${createPostCard()}
-      <div id="posts-container">
+      <div id="posts-container"">
       </div>
     </div>
   `;
