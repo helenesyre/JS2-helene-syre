@@ -57,14 +57,14 @@ export function postCard(post) {
       <footer class="text-gray-light text-sm flex items-center justify-between mb-5">
         <div class="flex gap-3">
           <a href="#/post/${post.id}" class="flex items-center gap-2 cursor-pointer">
-            ${likeIcon} ${totalLikes} Likes
+            ${likeIcon} ${totalLikes} <span class="hidden md:inline">Likes</span>
           </a>
           <a href="#/post/${post.id}" class="flex items-center gap-2 cursor-pointer">
-            ${commentIcon} ${totalComments} Comments
+            ${commentIcon} ${totalComments} <span class="hidden md:inline">Comments</span>
           </a>
         </div>
         <a href="#/post/${post.id}" class="flex items-center gap-2 cursor-pointer">
-          ${shareIcon} Share
+          ${shareIcon} <span class="hidden md:inline">Share</span>
         </a>
       </footer>
 

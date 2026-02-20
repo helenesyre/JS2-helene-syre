@@ -83,10 +83,10 @@ export async function postPage() {
 
       <footer class="text-gray-light text-sm flex items-center justify-between mb-5">
         <div class="flex gap-3">
-          <button class="flex items-center gap-2">${likeIcon} ${totalLikes} Likes</button>
-          <button class="flex items-center gap-2">${commentIcon} ${totalComments} Comments</button>
+          <button class="flex items-center gap-2">${likeIcon} ${totalLikes} <span class="hidden md:inline">Likes</span></button>
+          <button class="flex items-center gap-2">${commentIcon} ${totalComments} <span class="hidden md:inline">Comments</span></button>
         </div>
-        <button class="flex items-center gap-2">${shareIcon} Share</button>
+        <button class="flex items-center gap-2">${shareIcon} <span class="hidden md:inline">Share</span></button>
       </footer>
 
       <section class="border-t border-surface-light pt-5">
