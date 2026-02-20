@@ -38,8 +38,10 @@ export function cardDropdownSettings(post) {
           window.location.reload();
         }
         if (event.target.dataset.dropdownAction === 'edit') {
+          useModal().closeModal(); // Close any open modal first
           const modalContent = createEditPostModal(post);
           useModal().openModal(modalContent);
+          if (dropdownMenu) dropdownMenu.classList.add('hidden'); // Hide the dropdown menu
         }
       });
     }
