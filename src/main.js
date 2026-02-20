@@ -3,6 +3,6 @@ import { renderFooter } from '../src/assets/js/components/footer.js';
 
 
 // Render footer
-//document.getElementById('footer').innerHTML = renderFooter();
+document.getElementById('footer').innerHTML = renderFooter();
 
 router();
