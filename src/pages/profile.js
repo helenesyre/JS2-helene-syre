@@ -8,7 +8,7 @@ import { followProfile, getPostsByProfile, getProfileData, unfollowProfile } fro
 
 export async function profile() {
   const hash = window.location.hash
-  const profilePageMatch = hash.match(/^#\/profile\/(\w+)/);
+  const profilePageMatch = hash.match(/^#\/profile\/([^/]+)/);
   const profileName = profilePageMatch ? profilePageMatch[1] : null;
   const auth = useAuth();
   const profile = await getProfileData(profileName);
