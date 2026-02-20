@@ -1,5 +1,3 @@
-import gradientImg from '../../images/gradient.jpg';
-
 export function suggestions() {
   const avatarImg1 = "https://images.unsplash.com/photo-1770701195265-8af0dc148446?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
   const avatarImg2 = "https://images.unsplash.com/photo-1769863467291-23cf7902f686?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";

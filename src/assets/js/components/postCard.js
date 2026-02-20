@@ -30,7 +30,7 @@ export function postCard(post) {
   const currentUserAlt = auth.getUserData()?.avatar?.alt || 'User Avatar';
 
   return `
-    <article class="card mb-6">
+    <article class="card mb-6 w-full lg:w-[576px]">
       <header class="flex items-start justify-between mb-5">
         <a href="#/profile/${post.author.name}">
           <div class="flex items-center gap-3">

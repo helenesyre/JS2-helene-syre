@@ -33,11 +33,11 @@ export function renderNav() {
 
   return `
     <a href="#/" class="flex items-center">${navLogo}</a>
-    <div class="space-y-4">
+    <div class="fixed bottom-0 left-0 lg:sticky lg:space-y-4 w-full h-16 md:h-auto z-50 bg-surface-dark lg:bg-transparent flex flex-row lg:flex-col justify-between lg:justify-start border-t border-gray-muted lg:border-none">
       ${links.map(link => `
-        <a href="${link.href}" class="flex items-center hover:bg-main-white hover:text-main-black p-3 rounded-xl smooth-transition ${currentHash === link.href ? ' bg-main-neon text-main-black' : ' text-gray-light'}">
-          <span class="mr-2">${link.icon}</span>
-          ${link.label}
+        <a href="${link.href}" class="flex-1 flex flex-col lg:flex-row items-center justify-center lg:justify-start hover:bg-main-white hover:text-main-black p-3 lg:rounded-xl smooth-transition${currentHash === link.href ? ' bg-main-neon text-main-black' : ' text-gray-light'}">
+          <span class="md:mb-1 lg:mr-2 lg:mb-0">${link.icon}</span>
+          <span class="hidden md:inline md:text-sm lg:text-base">${link.label}</span>
         </a>
       `).join('')}
     </div>

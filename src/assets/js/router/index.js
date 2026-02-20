@@ -16,7 +16,7 @@ export function router() {
       if (route.path.test(hash)) {
         routeFound = true;
         const content = await route.view();
-        element.className = route.noContentClass ? '' : 'flex flex-row justify-center mx-36';
+        element.className = route.noContentClass ? '' : 'flex flex-col lg:flex-row mx-8 lg:mx-36 justify-center';
         // If the route has a custom layout, use it. Otherwise, use the default layout with or without sidebar.
         if (route.layout) {
           element.innerHTML = route.layout(content);
@@ -34,7 +34,7 @@ export function router() {
 
     // Handle 404 - If no route matches, show the page not found view
     if (!routeFound) {
-      element.className = 'flex flex-row justify-center mx-36';
+      element.className = 'flex flex-col lg:flex-row justify-center mx-8 lg:mx-36';
       const content = pageNotFound();
       const auth = useAuth();
       // If the user is logged in, show the default layout with navbar. Otherwise, show the clean layout without navbar.

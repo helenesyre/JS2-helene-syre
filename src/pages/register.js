@@ -8,8 +8,8 @@ export function register() {
   setTimeout(() => setupRegisterFormListeners(), 0);
 
   return `
-    <img src="${registerImg}" alt="Register image" class="h-screen w-1/2 object-cover">
-    <div class="w-1/2 max-w-sm mx-auto">
+    <img src="${registerImg}" alt="Register image" class="hidden lg:block h-screen w-1/2 object-cover">
+    <div class="w-full lg:w-1/2 p-12 mx-auto max-w-sm">
       <h1 class="text-3xl font-bold mb-4">Create an account</h1>
       ${form}
     </div>

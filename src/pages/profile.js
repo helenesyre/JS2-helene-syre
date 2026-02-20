@@ -68,15 +68,15 @@ export async function profile() {
   }, 0);
 
   return `
-    <div class="flex items-center gap-6 mb-10">
-      <div class="relative">
-        <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-40 h-40 mb-4 object-cover">
-        ${auth.getUserData()?.name === profile.data.name ? `<button class="absolute bottom-0 right-0 rounded-full p-2 bg-main-white text-main-black border-5 border-main-black">${editIcon}</button>` : ''}
+    <div class="flex flex-col md:flex-row items-center gap-6 mb-10 w-full md:max-w-2xl lg:max-w-5xl mx-auto">
+      <div class="relative md:min-w-[170px]">
+        <img src="${currentUserAvatar}" alt="${currentUserAlt}" class="rounded-full w-24 h-24 md:w-40 md:h-40 mb-4 object-cover shadow-lg">
+        ${auth.getUserData()?.name === profile.data.name ? `<button class="absolute bottom-0 md:bottom-2 right-0 md:right-2 rounded-full p-2 bg-main-white text-main-black border-5 border-main-black">${editIcon}</button>` : ''}
       </div>
-      <div>
+      <div class="text-center md:text-left">
         <h1 class="text-2xl font-bold">${profile.data.name.charAt(0).toUpperCase() + profile.data.name.slice(1)}</h1>
         <p class="text-gray-light">@${profile.data.name.toLowerCase()}</p>
-        <div class="flex gap-6 mt-3">
+        <div class="flex flex-col md:flex-row gap-3 md:gap-6 my-3">
           <p>${profile.data._count.posts} Posts</p>
           <p>${profile.data._count.following} Following</p>
           <p>${profile.data._count.followers} Followers</p>

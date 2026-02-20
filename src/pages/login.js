@@ -8,8 +8,8 @@ export function login() {
   setTimeout(() => setupLoginFormListeners(), 0);
 
   return `
-    <img src="${loginImg}" alt="Login image" class="h-screen w-1/2 object-cover">
-    <div class="w-1/2 max-w-sm mx-auto">
+    <img src="${loginImg}" alt="Login image" class="hidden lg:block h-screen w-1/2 object-cover">
+    <div class="w-full lg:w-1/2 p-12 mx-auto max-w-sm">
       <h1 class="text-3xl font-bold mb-4">Welcome Back!</h1>
       <p class="text-base text-gray-light">Log in to connect with friends, share your moments, and explore new stories. We're glad to see you back!</p>
       ${form}

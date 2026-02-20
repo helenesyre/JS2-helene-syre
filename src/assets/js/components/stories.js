@@ -1,4 +1,3 @@
-import gradientImg from '../../images/gradient.jpg';
 import { createIcon } from "./icons/createIcon";
 
 const storyImg1 = "https://images.unsplash.com/photo-1560942485-b2a11cc13456?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";

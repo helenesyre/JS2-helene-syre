@@ -13,7 +13,7 @@ export function createEditPostModal(post) {
 
   const modalContent = document.createElement("div")
   modalContent.id = "edit-post-modal-content"
-  modalContent.className = "bg-surface-dark rounded-lg p-6 w-full max-w-md relative"
+  modalContent.className = "bg-surface-dark rounded-lg p-6 w-full max-w-md relative w-full mx-6"
 
   const closeButton = document.createElement("button")
   closeButton.className = "absolute top-3 right-3 text-gray-light hover:text-main-neon hover:cursor-pointer"
