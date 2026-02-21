@@ -144,7 +144,7 @@ export async function home() {
   }, 0);
 
   return `
-    <nav class="flex flex-col md:flex-row gap-3 items-center justify-between mb-6 lg:mb-9">
+    <nav class="flex flex-col md:flex-row gap-3 items-center justify-between mb-6 lg:mb-9 w-full lg:w-[576px]">
       <!-- Left tabs -->
       <div class="flex items-center gap-3">
         ${tabs.map(tab => `
