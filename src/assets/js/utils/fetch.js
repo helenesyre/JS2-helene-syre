@@ -148,9 +148,13 @@ export async function searchPosts(query, page = 1) {
   const auth = useAuth();
   const token = auth.getToken();
   /**
-   * Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
-   * info collected: 19. feb 2026
-   */
+   * Code source from:
+   * encodeURIComponent()
+   * @publisher: MDN Contributors
+   * @date: 2025-10-30
+   * accessed: 2026-02-19
+   * link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+  */
   const data = await useFetch(`/social/posts/search/?q=${encodeURIComponent(query)}&_author=true&_comments=true&_reactions=true&page=${page}`, {
     method: 'GET',
     headers: {

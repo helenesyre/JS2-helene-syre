@@ -6,9 +6,13 @@ import { cardDropdownSettings } from "./cardDropdownSettings";
 import { useAuth } from '../utils/useAuth';
 
 /**
- * Source:
- * https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
- */
+ * Code source from:
+ * Date toLocaleDateString()
+ * @publisher: W3Schools
+ * @date: N/A
+ * accessed: 2026-02-15
+ * link: https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
+*/
 
 export function postCard(post) {
   const totalLikes = post.reactions?.reduce((sum, r) => sum + (r.count || 0), 0) || 0;

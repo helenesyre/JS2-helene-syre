@@ -1,8 +1,11 @@
 /**
- * Source: https://stackoverflow.com/questions/75988682/debounce-in-javascript
- * Author mr. polywhirl
- * Date retrieved: 19. feb 2026
- */
+ * Code source from:
+ * Debounce in Javascript
+ * @publisher: Mr. Polywhirl
+ * @date: 2023-04-11
+ * accessed: 2026-02-19
+ * link: https://stackoverflow.com/questions/75988682/debounce-in-javascript
+*/
 export function debounce(func, wait, preFuncCallback) {
   let timeout;
 

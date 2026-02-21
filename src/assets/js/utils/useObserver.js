@@ -1,6 +1,9 @@
 /**
- * Source from corriculim: Lazy Loading with IntersectionObserver
- */
+ * Code source from:
+ * Lazy Loading with IntersectionObserver
+ * @publisher: Noroff corriculum
+ * @date: N/A
+*/
 export function useObserver() {
   // IntersectionObserver options to trigger loading images when they are about to enter the viewport
   const observerOptions = {

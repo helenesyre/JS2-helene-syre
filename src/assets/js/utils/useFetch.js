@@ -4,9 +4,10 @@ const API_URL = 'https://v2.api.noroff.dev';
 
 /**
  * Fetch data from the API
- * @param {string} url - The API endpoint URL
- * @param {Object} [options] - Fetch options
- * @returns {Promise<Object>} The JSON response from the API
+ * @param {string} url - The endpoint URL (relative to the base API URL).
+ * @param {object} options - Fetch options (method, headers, body, etc.).
+ * @returns {Promise<object>} The response data from the API.
+ * @throws Will throw an error if the fetch fails or if the response is not ok.
  */
 export async function useFetch(url, options = {}) {
   try {
@@ -26,7 +27,6 @@ export async function useFetch(url, options = {}) {
     }
     return await response.json();
   } catch (error) {
-    // Add toast later with errror message
     showToast(`${error.message}`, 'error');
     throw error;
   };
