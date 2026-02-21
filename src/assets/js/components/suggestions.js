@@ -10,29 +10,39 @@ export function suggestions() {
       <h2 class="text-lg mb-4 pb-2 border-b border-gray-medium">Suggestions</h2>
       <ul class="space-y-4">
         <li class="flex items-center gap-4">
-          <img src="${avatarImg1}" alt="User Avatar" class="rounded-full w-8 h-8 object-cover">
-          <p class="text-sm font-medium">MichaelAnders</p>
-          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          <img src="${avatarImg1}" alt="User Avatar" class="rounded-full w-8 h-8 min-w-8 min-h-8 object-cover">
+          <div class="flex flex-wrap justify-between gap-1 items-center w-full text-sm">
+            <p class="font-medium">MichaelAnders</p>
+            <p class="text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          </div>
         </li>
         <li class="flex items-center gap-4">
-          <img src="${avatarImg2}" alt="User Avatar" class="rounded-full w-8 h-8 object-cover">
-          <p class="text-sm font-medium">Alex_Morgan</p>
-          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          <img src="${avatarImg2}" alt="User Avatar" class="rounded-full w-8 h-8 min-w-8 min-h-8 object-cover">
+          <div class="flex flex-wrap justify-between gap-1 items-center w-full text-sm">
+            <p class="font-medium">Alex_Morgan</p>
+            <p class="text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          </div>
         </li>
         <li class="flex items-center gap-4">
-          <img src="${avatarImg3}" alt="User Avatar" class="rounded-full w-8 h-8 object-cover">
-          <p class="text-sm font-medium">NightXP</p>
-          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          <img src="${avatarImg3}" alt="User Avatar" class="rounded-full w-8 h-8 min-w-8 min-h-8 object-cover">
+          <div class="flex flex-wrap justify-between gap-1 items-center w-full text-sm">
+            <p class="font-medium">NightXP</p>
+            <p class="text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          </div>
         </li>
         <li class="flex items-center gap-4">
-          <img src="${avatarImg4}" alt="User Avatar" class="rounded-full w-8 h-8 object-cover">
-          <p class="text-sm font-medium">Pixel</p>
-          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          <img src="${avatarImg4}" alt="User Avatar" class="rounded-full w-8 h-8 min-w-8 min-h-8 object-cover">
+          <div class="flex flex-wrap justify-between gap-1 items-center w-full text-sm">
+            <p class="font-medium">PixelTesting</p>
+            <p class="text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          </div>
         </li>
         <li class="flex items-center gap-4">
-          <img src="${avatarImg5}" alt="User Avatar" class="rounded-full w-8 h-8 object-cover">
-          <p class="text-sm font-medium">Emma_W</p>
-          <p class="ml-auto text-sm text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          <img src="${avatarImg5}" alt="User Avatar" class="rounded-full w-8 h-8 min-w-8 min-h-8 object-cover">
+          <div class="flex flex-wrap justify-between gap-1 items-center w-full text-sm">
+            <p class="font-medium">Emma_W</p>
+            <p class="text-main-neon hover:cursor-pointer hover:underline">Follow</p>
+          </div>
         </li>
       </ul>
       <p class="text-sm text-gray-light mt-4 hover:cursor-pointer hover:underline">View more</p>
