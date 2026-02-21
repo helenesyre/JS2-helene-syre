@@ -18,13 +18,13 @@ export function stories() {
         </div>
         <div class="flex flex-col text-center items-center gap-2">
           <div class="rounded-full border-1 border-main-neon p-1 flex items-center justify-center hover:border-main-white hover:scale-105 cursor-pointer smooth-transition">
-            <img src="${storyImg1}" alt="User story" class="rounded-full w-12 h-12 object-cover">
+            <img src="${storyImg1}" alt="User story Isabella_B" class="rounded-full w-12 h-12 object-cover">
           </div>
           <p class="text-sm text-gray-light">Isabella_B</p>
         </div>
         <div class="flex flex-col text-center items-center gap-2">
           <div class="rounded-full border-1 border-main-neon p-1 flex items-center justify-center hover:border-main-white hover:scale-105 cursor-pointer smooth-transition">
-            <img src="${storyImg2}" alt="User story" class="rounded-full w-12 h-12 object-cover">
+            <img src="${storyImg2}" alt="User story Nova" class="rounded-full w-12 h-12 object-cover">
           </div>
           <p class="text-sm text-gray-light">Nova</p>
         </div>
