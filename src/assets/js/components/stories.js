@@ -7,8 +7,8 @@ export function stories() {
   return `
     <section class="mb-10">
       <h2 class="text-lg mb-4 pb-2 border-b border-gray-medium">Stories</h2>
-      <div class="flex justify-between">
-        <div class="flex flex-col items-center gap-2">
+      <div class="flex flex-wrap gap-6 justify-between">
+        <div class="flex flex-col text-center items-center gap-2">
           <div class="rounded-full border-1 border-main-neon p-1 flex items-center justify-center hover:border-main-white hover:scale-105 cursor-pointer smooth-transition">
             <div class="rounded-full text-black bg-main-neon flex items-center justify-center w-12 h-12">
               <span class="scale-110">${createIcon}</span>
@@ -16,13 +16,13 @@ export function stories() {
           </div>
           <p class="text-sm text-gray-light"> Add Story </p>
         </div>
-        <div class="flex flex-col items-center gap-2">
+        <div class="flex flex-col text-center items-center gap-2">
           <div class="rounded-full border-1 border-main-neon p-1 flex items-center justify-center hover:border-main-white hover:scale-105 cursor-pointer smooth-transition">
             <img src="${storyImg1}" alt="User story" class="rounded-full w-12 h-12 object-cover">
           </div>
           <p class="text-sm text-gray-light">Isabella_B</p>
         </div>
-        <div class="flex flex-col items-center gap-2">
+        <div class="flex flex-col text-center items-center gap-2">
           <div class="rounded-full border-1 border-main-neon p-1 flex items-center justify-center hover:border-main-white hover:scale-105 cursor-pointer smooth-transition">
             <img src="${storyImg2}" alt="User story" class="rounded-full w-12 h-12 object-cover">
           </div>
