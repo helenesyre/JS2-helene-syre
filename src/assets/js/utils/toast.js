@@ -13,16 +13,16 @@ export function showToast(message, type = "success", wait = 5000) {
   const textContentElement = document.createElement("div");
   const closeButton = document.createElement("button");
 
-  toast.className = "rounded shadow-lg flex items-start gap-4 p-4 text-sm text-white animate-fadeIn";
+  toast.className = "rounded shadow-lg flex justify-between items-start text-main-white gap-4 p-4 text-sm animate-fadeIn";
   switch (type) {
     case "success":
-      toast.classList.add(`bg-green-500`, `text-black`);
+      toast.classList.add(`bg-green-800`);
       break;
     case "error":
-      toast.classList.add(`bg-red-500`, `text-white`);
+      toast.classList.add(`bg-red-800`);
       break;
     default:
-      toast.classList.add("bg-gray-dark", "text-white");
+      toast.classList.add(`bg-gray-600`);
   }
 
   titleElement.textContent = message;
