@@ -4,10 +4,11 @@ import { likeIcon } from '../assets/js/components/icons/likeIcon';
 import { commentIcon } from '../assets/js/components/icons/commentIcon';
 import { shareIcon } from '../assets/js/components/icons/shareIcon';
 import { cardDropdownSettings } from '../assets/js/components/cardDropdownSettings';
+import gradientImg from '../assets/images/gradient.jpg';
 
 export async function postPage() {
   const hash = window.location.hash
-  const postPageMatch = hash.match(/^#\/post\/(\w+)/);
+  const postPageMatch = hash.match(/^#\/post\/([^\/]+)/);
   const id = postPageMatch ? postPageMatch[1] : null;
   // If no ID is provided, show an error message
   if (!id) {

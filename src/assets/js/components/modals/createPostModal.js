@@ -3,6 +3,7 @@ import { closeIcon } from '../icons/closeIcon.js';
 import { infoIcon } from "../icons/infoIcon";
 import { createPost } from "../../utils/fetch.js";
 import { validateImgUrl } from "../../utils/validation.js";
+import { showToast } from '../../utils/toast.js';
 
 export function createPostModal() {
   const { closeModal } = useModal();
@@ -53,19 +54,25 @@ export function createPostModal() {
     const img = formData.get("img")
 
     if (img && !validateImgUrl(img)) {
-      alert("Invalid image URL");
-      // change alert to toast later
+      showToast(`Invalid image URL`, 'error');
       return;
     }
 
-    await createPost({
+    const response = await createPost({
       title: title,
       body: content ?? "",
       ...(img ? { media: { url: img ?? "", alt: "" } } : {})
     })
 
-    closeModal();
-    window.location.reload();
+    if (response.data) {
+      showToast('Post created successfully!', 'success');
+      closeModal();
+      setTimeout(() => {
+        window.location.reload();
+      }, 750);
+    } else {
+      showToast('Failed to create post. Please try again.', 'error');
+    }
   })
 
   modal.addEventListener("click", (event) => {

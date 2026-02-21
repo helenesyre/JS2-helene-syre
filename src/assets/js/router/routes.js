@@ -13,12 +13,12 @@ export const routes = [
     view: home,
   },
   {
-    path: /^#\/profile\/(\w+)/,
+    path: /^#\/profile\/([^\/]+)/,
     view: profile,
     sidebar: profileSidebar,
   },
   {
-    path: /^#\/post\/(\w+)/,
+    path: /^#\/post\/([^\/]+)/,
     view: postPage
   },
   {

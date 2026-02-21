@@ -4,6 +4,7 @@ import { routes } from './routes.js';
 import { pageNotFound } from '../../../pages/pageNotFound.js';
 import cleanLayout from '../components/layouts/cleanLayout.js';
 import { useAuth } from '../utils/useAuth.js';
+import { loaderIcon } from '../components/icons/loaderIcon.js';
 
 export function router() {
   async function handleRoute() {
@@ -15,7 +16,9 @@ export function router() {
       // Check if the current hash matches the route's path regex
       if (route.path.test(hash)) {
         routeFound = true;
+        element.innerHTML = `<div class="flex justify-center items-center h-screen animate-spin">${loaderIcon}</div>`; // Show loader while fetching content
         const content = await route.view();
+        element.innerHTML = ''; // Clear the loader before rendering the new content
         element.className = route.noContentClass ? '' : 'flex flex-col lg:flex-row mx-8 lg:mx-36 justify-center';
         // If the route has a custom layout, use it. Otherwise, use the default layout with or without sidebar.
         if (route.layout) {
@@ -27,7 +30,12 @@ export function router() {
             element.innerHTML = defaultLayout(content);
           }
         }
-        document.getElementById('navbar').innerHTML = renderNav();
+        const navbar = document.getElementById('navbar');
+        // Only render the navigation bar if the user is logged in and the navbar element exists in the DOM
+        if (navbar) {
+          navbar.innerHTML = renderNav();
+        }
+        window.scrollTo(0, 0);
         return;
       }
     }

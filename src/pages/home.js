@@ -4,6 +4,8 @@ import { getAllFollowingPosts, getAllPosts, searchPosts } from "../assets/js/uti
 import { useObserver } from "../assets/js/utils/useObserver";
 import { searchIcon } from "../assets/js/components/icons/searchIcon";
 import { debounce } from "../assets/js/utils/debounce";
+import { showToast } from "../assets/js/utils/toast";
+import { loaderIcon } from "../assets/js/components/icons/loaderIcon";
 
 export async function home() {
   const observer = useObserver();
@@ -24,6 +26,7 @@ export async function home() {
     // Set isLoading to true to prevent multiple simultaneous fetches
     isLoading = true;
     const container = document.getElementById('posts-container');
+    container.innerHTML = `<div class="flex justify-center items-center h-64 animate-spin">${loaderIcon}</div>`;
 
     try {
       // Fetch posts for the current page
@@ -43,6 +46,7 @@ export async function home() {
         default:
           posts = await getAllPosts(page);
       }
+      container.innerHTML = ''; // Clear the loader before appending posts
 
       // Update totalPages based on the API response to know when to stop fetching more posts
       totalPages = posts.meta.pageCount;
@@ -63,8 +67,7 @@ export async function home() {
       // Increment the page number for the next fetch when the user scrolls near the bottom again
       page++;
     } catch (error) {
-      // add toast and remove console.error later
-      console.error(error);
+      showToast(`An error occurred while fetching posts: ${error.message}`, 'error');
     } finally {
       // Set isLoading back to false after the fetch is complete, regardless of success or failure
       isLoading = false;
@@ -72,7 +75,10 @@ export async function home() {
   }
 
   // Listen for scroll events to trigger loading more posts when the user scrolls near the bottom of the page
-  window.addEventListener('scroll', () => {
+  document.addEventListener('scroll', () => {
+    const hash = window.location.hash
+    const homePageMatch = hash.match(/^#\/$/);
+    if (!homePageMatch) return; // Only trigger infinite scroll on the home page
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
       if (!isLoading && page <= totalPages) {
         fetchDataOnScroll();

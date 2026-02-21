@@ -1,3 +1,5 @@
+import { showToast } from "./toast";
+
 const API_URL = 'https://v2.api.noroff.dev';
 
 /**
@@ -16,14 +18,16 @@ export async function useFetch(url, options = {}) {
         localStorage.removeItem('profileName'); // Clear the profile name from localStorage
         window.location.hash = '#/login'; // Redirect to login page
       }
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(`${errorData.status}: ${errorData.errors?.[0]?.message}` || `HTTP error! status: ${response.status}`);
     }
     if (response.status === 204) {
-      return; // No content to return
+      return response; // No content to return
     }
     return await response.json();
   } catch (error) {
     // Add toast later with errror message
+    showToast(`${error.message}`, 'error');
     throw error;
   };
 };

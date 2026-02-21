@@ -3,6 +3,7 @@ import { useAuth } from '../utils/useAuth';
 import { deletePost } from "../utils/fetch";
 import { createEditPostModal } from './modals/createEditPostModal';
 import useModal from "../utils/useModal";
+import { showToast } from "../utils/toast";
 
 // Generates a unique id for each dropdown instance
 let dropdownIdCounter = 0;
@@ -34,8 +35,15 @@ export function cardDropdownSettings(post) {
       dropdownMenuActions.addEventListener('click', async function (event) {
         event.stopPropagation(); // Prevent click from bubbling up to document
         if (event.target.dataset.dropdownAction === 'delete') {
-          await deletePost(post.id);
-          window.location.reload();
+          const response = await deletePost(post.id);
+          if (response.status === 204) {
+            showToast('Post deleted successfully!', 'success');
+            setTimeout(() => {
+              window.location.reload();
+            }, 750);
+          } else {
+            showToast('Failed to delete post. Please try again.', 'error');
+          }
         }
         if (event.target.dataset.dropdownAction === 'edit') {
           useModal().closeModal(); // Close any open modal first

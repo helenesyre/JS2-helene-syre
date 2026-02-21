@@ -1,3 +1,4 @@
+import { showToast } from "./toast";
 import { useFetch } from "./useFetch";
 
 export function useAuth() {
@@ -16,17 +17,16 @@ export function useAuth() {
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("profileName", response.data.name);
         localStorage.setItem("userData", JSON.stringify(response.data));
-        // Show toast before redirect
-        console.log('Login successful! Redirecting to home...', 'Login Success', 'success');
+        showToast(`Login successful! Redirecting to home...`, 'success');
         // Redirect after a short delay to allow toast to be seen
         setTimeout(() => {
           window.location.hash = '#/';
         }, 2000);
       } else {
-        console.log("Login failed: " + (response.errors?.[0]?.message || "Check console for details."));
+        showToast(`Login failed: ${response.errors?.[0]?.message || "Check console for details."}`, 'error');
       }
     } catch (error) {
-      console.log('Login failed. Please try again.');
+      showToast(`Login failed. Please try again.`, 'error');
     }
   };
 
@@ -56,17 +56,16 @@ export function useAuth() {
       });
 
       if (response) {
-        console.log('Registration successful! Redirecting to login...');
+        showToast('Registration successful! Redirecting to login...', 'success');
         setTimeout(() => {
           window.location.hash = '#/login';
         }, 2000);
       } else {
-        console.log('Registration failed. Please try again.');
+        showToast('Registration failed. Please try again.', 'error');
       }
 
     } catch (error) {
       const errorMessage = error?.errors?.[0]?.message || 'Something went wrong. Please try again later.';
-      console.log(errorMessage);
     }
   };
 
@@ -79,7 +78,8 @@ export function useAuth() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('profileName');
     localStorage.removeItem('userData');
-    window.location.reload();
+    showToast(`Logged out successfully! Redirecting to login...`, 'success');
+    window.location.hash = '#/login';
   };
 
   function isLoggedIn() {
