@@ -7,6 +7,8 @@ import { debounce } from "../assets/js/utils/debounce";
 import { showToast } from "../assets/js/utils/toast";
 import { loaderIcon } from "../assets/js/components/icons/loaderIcon";
 
+let hasScrollEventListener = false; // Flag to track if the scroll event listener has been added
+
 /**
  * Renders the home page with a feed of posts, including tabs for "Feed" and "Following",
  * a search bar, and infinite scrolling functionality to load more posts as the user scrolls down.
@@ -24,20 +26,24 @@ export async function home() {
   let totalPages = 1; // This will be set based on the API response to know when to stop fetching more posts
   let isLoading = false;
   let selectedTab = 'feed-tab';
+  let hasContent = false; // Flag to track if any posts have been loaded yet, used to determine grid layout for posts
 
   /**
    * Fetches posts from the API based on the selected tab and search input. It manages the
    * loading state to prevent multiple simultaneous fetches. This function is called when
    * the user scrolls near the bottom of the page to implement infinite scrolling.
+   * It also updates the totalPages variable based on the API response to know when to stop fetching more posts.
    * @async
-   * @returns {Promise<void>} - A promise that resolves when the fetch and DOM updates are complete.
+   * @returns {Promise<void>} - A promise that resolves when the posts have been fetched and rendered.
    */
   async function fetchDataOnScroll() {
     if (isLoading) return;
     // Set isLoading to true to prevent multiple simultaneous fetches
     isLoading = true;
     const container = document.getElementById('posts-container');
-    container.innerHTML = `<div class="flex justify-center items-center h-64 animate-spin">${loaderIcon}</div>`;
+    if (!hasContent) {
+      container.innerHTML = `<div class="flex justify-center items-center h-64 animate-spin">${loaderIcon}</div>`;
+    }
 
     try {
       // Fetch posts for the current page
@@ -57,7 +63,10 @@ export async function home() {
         default:
           posts = await getAllPosts(page);
       }
-      container.innerHTML = ''; // Clear the loader before appending posts
+      if (!hasContent) {
+        container.innerHTML = ''; // Clear the loader before appending posts
+        hasContent = true;
+      }
 
       // Update totalPages based on the API response to know when to stop fetching more posts
       totalPages = posts.meta.pageCount;
@@ -85,8 +94,12 @@ export async function home() {
     }
   }
 
-  // Listen for scroll events to trigger loading more posts when the user scrolls near the bottom of the page
-  document.addEventListener('scroll', () => {
+  /**
+   * Handles the scroll event to implement infinite scrolling. It checks if the user has scrolled near the bottom of the page
+   * and if so, it calls the fetchDataOnScroll function to load more posts. This function only triggers on the home page.
+   * @param {Event} event - The scroll event object.
+   */
+  function handleHomeScroll() {
     const hash = window.location.hash
     const homePageMatch = hash.match(/^#\/$/);
     if (!homePageMatch) return; // Only trigger infinite scroll on the home page
@@ -95,7 +108,12 @@ export async function home() {
         fetchDataOnScroll();
       }
     }
-  });
+  };
+  // Add the scroll event listener to the document if it hasn't been added yet, to implement infinite scrolling on the home page
+  if (!hasScrollEventListener) {
+    document.addEventListener('scroll', handleHomeScroll);
+    hasScrollEventListener = true;
+  }
 
   const clearContent = () => {
     page = 1;

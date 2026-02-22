@@ -8,6 +8,11 @@ import { showToast } from "../utils/toast";
 // Generates a unique id for each dropdown instance
 let dropdownIdCounter = 0;
 
+// Click outside closes all dropdowns
+document.addEventListener('click', function () {
+  document.querySelectorAll('.card-dropdown').forEach(dropdown => dropdown.classList.add('hidden'));
+});
+
 /**
  * Creates a dropdown menu for card settings, including actions like edit and delete.
  * @param {Object} post - The post object containing the current post data.
@@ -59,11 +64,6 @@ export function cardDropdownSettings(post) {
       });
     }
   }, 0);
-
-  // Click outside closes all dropdowns
-  document.addEventListener('click', function () {
-    document.querySelectorAll('.card-dropdown').forEach(dropdown => dropdown.classList.add('hidden'));
-  });
 
   if (!isAuthor) {
     return `

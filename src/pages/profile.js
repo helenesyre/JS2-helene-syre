@@ -1,9 +1,9 @@
 import { likeIcon } from "../assets/js/components/icons/likeIcon";
 import { commentIcon } from "../assets/js/components/icons/commentIcon";
-import { useAuth } from '../assets/js/utils/useAuth';
 import { getPostsByProfile, getProfileData } from '../assets/js/utils/fetch';
 import profileHeader from '../assets/js/components/profileHeader';
 
+let hasProfileUpdatedListener = false; // Flag to track if the profileUpdated event listener has been added
 /**
  * Renders the profile page, displaying the user's profile information and their posts.
  * It fetches the profile data and posts based on the profile name provided in the URL hash
@@ -36,9 +36,12 @@ export async function profile() {
 
   const posts = await getPostsByProfile(profileName);
   setTimeout(() => {
-    document.addEventListener('profileUpdated', async (event) => {
-      await refreshProfileData(event.detail.profileName);
-    });
+    if (!hasProfileUpdatedListener) {
+      document.addEventListener('profileUpdated', async (event) => {
+        await refreshProfileData(event.detail.profileName);
+      });
+      hasProfileUpdatedListener = true;
+    }
   }, 0);
 
   return `
@@ -66,6 +69,6 @@ export async function profile() {
     }
     </div>
   `;
-}
+};
 
 
