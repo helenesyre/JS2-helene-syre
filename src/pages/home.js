@@ -8,6 +8,7 @@ import { showToast } from "../assets/js/utils/toast";
 import { loaderIcon } from "../assets/js/components/icons/loaderIcon";
 
 let hasScrollEventListener = false; // Flag to track if the scroll event listener has been added
+let selectedTab = 'feed-tab';
 
 /**
  * Renders the home page with a feed of posts, including tabs for "Feed" and "Following",
@@ -25,7 +26,6 @@ export async function home() {
   let page = 1;
   let totalPages = 1; // This will be set based on the API response to know when to stop fetching more posts
   let isLoading = false;
-  let selectedTab = 'feed-tab';
   let hasContent = false; // Flag to track if any posts have been loaded yet, used to determine grid layout for posts
 
   /**
