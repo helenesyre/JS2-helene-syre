@@ -48,11 +48,11 @@ export function loginForm() {
   form.innerHTML = `
     <div class="flex flex-col gap-2">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your email..." required />
+      <input type="email" id="email" name="email" aria-label="Email" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your email..." required />
     </div>
     <div class="flex flex-col gap-2">
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your password..." required />
+      <input type="password" id="password" name="password" aria-label="Password" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your password..." required />
     </div>
     <p class="text-sm text-main-neon flex justify-end hover:cursor-pointer hover:underline">Forgot Password?</p>
     <button type="submit" class="text-base rounded-xl bg-main-neon px-4 py-3 font-medium text-black hover:cursor-pointer">

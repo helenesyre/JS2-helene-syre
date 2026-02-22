@@ -35,15 +35,15 @@ export function createPostModal() {
   form.innerHTML = `
     <div class="flex flex-col">
       <label for="post-title" class="text-sm font-medium mb-1">Title *</label>
-      <input name="title" type="text" id="post-title" class="bg-surface-medium rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Post Title" required>
+      <input name="title" type="text" id="post-title" aria-label="Post Title" class="bg-surface-medium rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Post Title" required>
     </div>
     <div class="flex flex-col">
       <label for="post-content" class="text-sm font-medium mb-1">Content</label>
-      <textarea name="content" id="post-content" class="bg-surface-medium rounded-lg p-2 h-32 resize-none text-sm focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="What's on your mind?"></textarea>
+      <textarea name="content" id="post-content" aria-label="Post Content" class="bg-surface-medium rounded-lg p-2 h-32 resize-none text-sm focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="What's on your mind?"></textarea>
     </div>
     <div class="flex flex-col mb-4">
       <label for="post-image-url" class="text-sm font-medium mb-1 flex items-center gap-1">Image URL ${infoIcon}</label>
-      <input name="img" type="text" id="post-image-url" class="bg-surface-medium rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Image URL (optional)">
+      <input name="img" type="text" id="post-image-url" aria-label="Image URL" class="bg-surface-medium rounded-lg p-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Image URL (optional)">
     </div>
 
     <button type="submit" class="bg-main-neon text-black font-medium py-2 rounded hover:bg-main-neon-dark transition-colors">

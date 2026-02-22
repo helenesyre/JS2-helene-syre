@@ -61,18 +61,18 @@ export function registerForm() {
   form.innerHTML = `
     <div class="flex flex-col gap-2">
       <label for="username">Username</label>
-      <input type="text" id="username" name="username" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your username..." required />
+      <input type="text" id="username" name="username" aria-label="Username" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your username..." required />
     </div>
     <div class="flex flex-col gap-2">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your email..." required />
+      <input type="email" id="email" name="email" aria-label="Email" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your email..." required />
     </div>
     <div class="flex flex-col gap-2">
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your password..." required />
+      <input type="password" id="password" name="password" aria-label="Password" class="rounded-xl border border-gray-dark bg-input-bg-dark px-4 py-3 text-main-white placeholder-gray-medium focus:outline-none focus:ring-2 focus:ring-gray-muted" placeholder="Enter your password..." required />
     </div>
     <div class="flex items-center gap-2">
-      <input type="checkbox" id="terms" name="terms" required />
+      <input type="checkbox" id="terms" name="terms" aria-label="Terms and Conditions" required />
       <label for="terms">I agree to the terms and conditions</label>
     </div>
     <button type="submit" class="text-base rounded-xl bg-main-neon px-4 py-3 font-medium text-black hover:cursor-pointer">
