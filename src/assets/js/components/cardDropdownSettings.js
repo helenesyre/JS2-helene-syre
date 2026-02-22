@@ -49,7 +49,7 @@ export function cardDropdownSettings(post) {
           if (response.status === 204) {
             showToast('Post deleted successfully!', 'success');
             setTimeout(() => {
-              window.location.reload();
+              window.location.hash = '#/'; // Redirect to home page after deletion
             }, 750);
           } else {
             showToast('Failed to delete post. Please try again.', 'error');
