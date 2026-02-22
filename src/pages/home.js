@@ -7,6 +7,11 @@ import { debounce } from "../assets/js/utils/debounce";
 import { showToast } from "../assets/js/utils/toast";
 import { loaderIcon } from "../assets/js/components/icons/loaderIcon";
 
+/**
+ * Renders the home page with a feed of posts, including tabs for "Feed" and "Following",
+ * a search bar, and infinite scrolling functionality to load more posts as the user scrolls down.
+ * @returns {string} HTML string representing the home page content.
+ */
 export async function home() {
   const observer = useObserver();
   const tabs = [
@@ -20,7 +25,13 @@ export async function home() {
   let isLoading = false;
   let selectedTab = 'feed-tab';
 
-  // Function to fetch posts and append them to the container when the user scrolls near the bottom of the page
+  /**
+   * Fetches posts from the API based on the selected tab and search input. It manages the
+   * loading state to prevent multiple simultaneous fetches. This function is called when
+   * the user scrolls near the bottom of the page to implement infinite scrolling.
+   * @async
+   * @returns {Promise<void>} - A promise that resolves when the fetch and DOM updates are complete.
+   */
   async function fetchDataOnScroll() {
     if (isLoading) return;
     // Set isLoading to true to prevent multiple simultaneous fetches

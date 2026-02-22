@@ -1,6 +1,12 @@
 import { stories } from '../stories';
 import { suggestions } from '../suggestions.js';
 
+/**
+ * Generates the default layout for the application, including a header, main content, and sidebar.
+ * @param {string} content - The HTML content to be displayed within the main content.
+ * @param {string} [sidebarContent] - Optional HTML content for the sidebar. If not provided, default stories and suggestions are used.
+ * @returns {string} - The complete HTML structure for the default layout.
+ */
 export default function defaultLayout(content, sidebarContent) {
   const sidebar = sidebarContent ? sidebarContent : `
     ${stories()}

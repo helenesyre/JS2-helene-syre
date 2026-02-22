@@ -8,6 +8,11 @@ import { showToast } from "../utils/toast";
 // Generates a unique id for each dropdown instance
 let dropdownIdCounter = 0;
 
+/**
+ * Creates a dropdown menu for card settings, including actions like edit and delete.
+ * @param {Object} post - The post object containing the current post data.
+ * @returns {string} - The HTML structure for the card dropdown settings.
+ */
 export function cardDropdownSettings(post) {
   const dropdownId = `dropdown-${dropdownIdCounter++}`;
   const isAuthor = useAuth().getUserData()?.name === post.author.name;

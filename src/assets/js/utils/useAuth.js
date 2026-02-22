@@ -1,7 +1,17 @@
 import { showToast } from "./toast";
 import { useFetch } from "./useFetch";
 
+/**
+ * Custom hook for authentication-related operations, including login, registration, logout, and token management.
+ * @returns {Object} - An object containing authentication methods and properties.
+ */
 export function useAuth() {
+  /**
+   * Logs in a user with the provided email and password, saving the access token and user data to local storage upon successful authentication.
+   * @param {string} email - The email address of the user attempting to log in.
+   * @param {string} password - The password of the user attempting to log in.
+   * @returns {Promise<void>} - A promise that resolves when the login process is complete.
+   */
   async function login(email, password) {
     try {
       const response = await useFetch("/auth/login", {
@@ -30,6 +40,13 @@ export function useAuth() {
     }
   };
 
+  /**
+   * Registers a new user with the provided username, email, and password.
+   * @param {string} username - The desired username for the new account.
+   * @param {string} email - The email address for the new account.
+   * @param {string} password - The password for the new account.
+   * @returns {Promise<void>} - A promise that resolves when the registration process is complete.
+   */
   async function register(username, email, password) {
     const userData = {
       name: username,
@@ -69,11 +86,18 @@ export function useAuth() {
     }
   };
 
+  /**
+   * Retrieves the current user's data from local storage, if available.
+   * @returns {Object|null} - The user data object if available, or null if not found.
+   */
   function getUserData() {
     const userData = localStorage.getItem('userData');
     return userData ? JSON.parse(userData) : null;
   };
 
+  /**
+   * Logs out the current user by clearing local storage and redirecting to the login page.
+   */
   function logout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('profileName');
@@ -82,11 +106,19 @@ export function useAuth() {
     window.location.hash = '#/login';
   };
 
+  /**
+   * Checks if a user is currently logged in by verifying the presence of an access token.
+   * @returns {boolean} - True if the user is logged in, false otherwise.
+   */
   function isLoggedIn() {
     const token = localStorage.getItem('accessToken');
     return !!token;
   };
 
+  /**
+   * Retrieves the current user's access token from local storage.
+   * @returns {string|null} - The access token if available, or null if not found.
+   */
   function getToken() {
     return localStorage.getItem('accessToken');
   };

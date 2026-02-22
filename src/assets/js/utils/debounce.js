@@ -6,6 +6,15 @@
  * accessed: 2026-02-19
  * link: https://stackoverflow.com/questions/75988682/debounce-in-javascript
 */
+
+/**
+ * Creates a debounced function that delays the execution of the provided function until
+ * after a specified wait time has elapsed since the last time the debounced function was invoked.
+ * @param {Function} func - The function to debounce.
+ * @param {number} wait - The number of milliseconds to delay.
+ * @param {Function} [preFuncCallback] - An optional callback function to be executed before the debounced function is called.
+ * @returns {Function} - A new debounced function.
+ */
 export function debounce(func, wait, preFuncCallback) {
   let timeout;
 

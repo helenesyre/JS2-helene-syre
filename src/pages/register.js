@@ -1,6 +1,10 @@
 import registerImg from '../assets/images/register.jpg';
 import { registerForm, setupRegisterFormListeners } from '../assets/js/components/forms/registerForm';
 
+/**
+ * Renders the registration page with a form for creating a new account.
+ * @returns {string} HTML string representing the registration page content.
+ */
 export function register() {
   const form = registerForm();
 

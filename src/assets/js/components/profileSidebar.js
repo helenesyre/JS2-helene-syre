@@ -4,7 +4,6 @@ import { logoutIcon } from './icons/logoutIcon.js';
 import { useAuth } from '../utils/useAuth.js';
 
 const auth = useAuth();
-// Add event listener for logout button using event delegation
 document.addEventListener('click', function (event) {
   if (event.target.closest('#logout-button')) {
     auth.logout(); // Clear user data and tokens from localStorage
@@ -12,6 +11,10 @@ document.addEventListener('click', function (event) {
   }
 });
 
+/**
+ * Creates a profile sidebar component with actions for editing the profile, accessing settings, and logging out.
+ * @returns {string} - The HTML structure for the profile sidebar.
+ */
 export function profileSidebar() {
   return `
     <section class="flex flex-col gap-6">

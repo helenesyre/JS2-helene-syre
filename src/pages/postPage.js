@@ -6,6 +6,12 @@ import { shareIcon } from '../assets/js/components/icons/shareIcon';
 import { cardDropdownSettings } from '../assets/js/components/cardDropdownSettings';
 import gradientImg from '../assets/images/gradient.jpg';
 
+/**
+ * Renders the post page, displaying the details of a specific post based on the
+ * ID provided in the URL hash. It includes the post's author information, content,
+ * media, and interactions such as likes and comments.
+ * @returns {string} HTML string representing the post page content.
+ */
 export async function postPage() {
   const hash = window.location.hash
   const postPageMatch = hash.match(/^#\/post\/([^\/]+)/);

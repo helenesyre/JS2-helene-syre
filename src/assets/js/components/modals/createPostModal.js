@@ -5,6 +5,10 @@ import { createPost } from "../../utils/fetch.js";
 import { validateImgUrl } from "../../utils/validation.js";
 import { showToast } from '../../utils/toast.js';
 
+/**
+ * Creates a modal for creating a new post.
+ * @returns {HTMLElement} - The modal element for creating a new post.
+ */
 export function createPostModal() {
   const { closeModal } = useModal();
 

@@ -9,6 +9,18 @@ import useModal from "../utils/useModal";
 import { createPostModal } from "./modals/createPostModal";
 import { useAuth } from "../utils/useAuth";
 
+/**
+ * Renders the navigation bar with links to different sections of the application. This includes:
+ * - Home
+ * - Messages
+ * - Saved Posts
+ * - Notifications
+ * - Create
+ * - Profile
+ *
+ * Highlights the active link based on the current URL hash and opens the create post modal when the Create link is clicked.
+ * @returns {string} - The HTML structure for the navigation bar.
+ */
 export function renderNav() {
   const currentHash = window.location.hash || '#/';
   const auth = useAuth();

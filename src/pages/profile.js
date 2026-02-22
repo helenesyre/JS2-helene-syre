@@ -4,7 +4,12 @@ import { useAuth } from '../assets/js/utils/useAuth';
 import { getPostsByProfile, getProfileData } from '../assets/js/utils/fetch';
 import profileHeader from '../assets/js/components/profileHeader';
 
-
+/**
+ * Renders the profile page, displaying the user's profile information and their posts.
+ * It fetches the profile data and posts based on the profile name provided in the URL hash
+ * and updates the profile header when the profile is updated.
+ * @returns {string} HTML string representing the profile page content.
+ */
 export async function profile() {
   const hash = window.location.hash
   const profilePageMatch = hash.match(/^#\/profile\/([^\/]+)/);
@@ -20,6 +25,10 @@ export async function profile() {
       </div>`
     );
   }
+  /**
+   * Refreshes the profile data and updates the profile header.
+   * @param {string} profileName - The name of the profile to refresh.
+   */
   async function refreshProfileData(profileName) {
     profile = await getProfileData(profileName);
     document.getElementById('profile-header').innerHTML = profileHeader(profile, profileName);

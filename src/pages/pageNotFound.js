@@ -1,5 +1,9 @@
 import pageNotFoundImg from '../assets/images/page-not-found.png';
 
+/**
+ * Renders a "Page Not Found" page with an image, message, and a link to return to the home page.
+ * @returns {string} HTML string representing the "Page Not Found" page.
+ */
 export function pageNotFound() {
   return `
     <section class="flex flex-col items-center justify-center gap-6 py-12 h-[80vh] lg:h-screen">

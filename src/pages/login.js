@@ -1,6 +1,10 @@
 import loginImg from '../assets/images/login.jpg';
 import { loginForm, setupLoginFormListeners } from '../assets/js/components/forms/loginForm';
 
+/**
+ * Renders the login page with a welcoming message and a login form.
+ * @returns {string} HTML string representing the login page content.
+ */
 export function login() {
   const form = loginForm();
 

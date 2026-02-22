@@ -1,5 +1,9 @@
 import comingSoonImg from '../assets/images/coming-soon.png';
 
+/**
+ * Renders a "Coming Soon" page with an image, message, and a link to return to the home page.
+ * @returns {string} HTML string representing the "Coming Soon" page.
+ */
 export function comingSoon() {
   return `
     <section class="flex flex-col items-center justify-center gap-6 py-12 h-[80vh] lg:h-screen">

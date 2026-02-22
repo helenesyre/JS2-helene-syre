@@ -14,6 +14,11 @@ import { useAuth } from '../utils/useAuth';
  * link: https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
 */
 
+/**
+ * Creates a card component for a post, including the author's information, post content, media, and interactions.
+ * @param {Object} post - The post object containing the current post data.
+ * @returns {string} - The HTML structure for the post card.
+ */
 export function postCard(post) {
   const totalLikes = post.reactions?.reduce((sum, r) => sum + (r.count || 0), 0) || 0;
   const totalComments = post.comments?.length || 0;

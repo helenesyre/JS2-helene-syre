@@ -4,6 +4,12 @@
  * @publisher: Noroff corriculum
  * @date: N/A
 */
+
+/**
+ * Custom hook for managing lazy loading of images using the IntersectionObserver,
+ * allowing images to be loaded only when they are about to enter the viewport.
+ * @returns {IntersectionObserver} - An instance of IntersectionObserver configured for lazy loading images.
+ */
 export function useObserver() {
   // IntersectionObserver options to trigger loading images when they are about to enter the viewport
   const observerOptions = {
@@ -11,7 +17,11 @@ export function useObserver() {
     rootMargin: '0px 0px 200px 0px', // trigger 200px before it enters viewport
   };
 
-  // IntersectionObserver callback function to load images when they intersect with the viewport
+  /**
+   * Callback function for the IntersectionObserver to handle image loading when they intersect with the viewport.
+   * @param {IntersectionObserverEntry[]} entries - Array of IntersectionObserverEntry objects representing the observed elements.
+   * @param {IntersectionObserver} observer - The IntersectionObserver instance.
+   */
   function handleIntersection(entries, observer) {
     entries.forEach((entry) => { // Check if the image is intersecting with the viewport
       if (entry.isIntersecting) {

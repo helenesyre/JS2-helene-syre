@@ -3,6 +3,12 @@ import { useAuth } from "../utils/useAuth";
 import { editIcon } from "./icons/editIcon";
 import gradientImg from '../../images/gradient.jpg';
 
+/**
+ * Creates a profile header component, including the user's avatar, name, bio, and follow/unfollow button.
+ * @param {Object} profile - The profile object containing the current profile data.
+ * @param {string} profileName - The name of the profile being viewed.
+ * @returns {string} - The HTML structure for the profile header.
+ */
 export default function profileHeader(profile, profileName) {
   const currentUserAvatar = profile.data.avatar.url || gradientImg;
   const currentUserAlt = profile.data.avatar.alt || 'User Avatar';
@@ -11,8 +17,11 @@ export default function profileHeader(profile, profileName) {
   // Check if the current user is following the profile by looking for the profile name in the followers list of the profile data
   const isFollowing = profile.data.followers.some(follower => follower.name === auth.getUserData()?.name);
 
-  // Function to toggle follow/unfollow state when the follow button is clicked.
-  // It calls the appropriate API function based on the current follow state and then reloads the page to reflect the changes.
+  /**
+   * Function to toggle follow/unfollow state when the follow button is clicked.
+   * It calls the appropriate API function based on the current follow state and then reloads the page to reflect the changes.
+   * @returns {Promise<void>} - A promise that resolves when the follow/unfollow action is completed.
+   */
   async function toggleFollow() {
     if (isFollowing) {
       await unfollowProfile(profileName);

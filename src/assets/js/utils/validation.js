@@ -68,6 +68,12 @@ export function validationErrorMessageHTML(message = "Validation error") {
  * accessed: 2026-02-18
  * link: https://www.freecodecamp.org/news/how-to-validate-urls-in-javascript/
 */
+
+/**
+ * Validates an image URL.
+ * @param {string} url - The URL to validate.
+ * @returns {boolean} True if the URL is valid and uses HTTP or HTTPS, false otherwise.
+ */
 export function validateImgUrl(url) {
   try {
     const newUrl = new URL(url);

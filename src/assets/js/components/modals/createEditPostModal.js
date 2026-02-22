@@ -5,6 +5,11 @@ import { updatePost } from "../../utils/fetch.js";
 import { validateImgUrl } from "../../utils/validation.js";
 import { showToast } from '../../utils/toast.js';
 
+/**
+ * Creates a modal for editing a post.
+ * @param {Object} post - The post object containing the current post data.
+ * @returns {HTMLElement} - The modal element for editing the post.
+ */
 export function createEditPostModal(post) {
   const { closeModal } = useModal();
 

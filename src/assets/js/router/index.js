@@ -6,6 +6,11 @@ import cleanLayout from '../components/layouts/cleanLayout.js';
 import { useAuth } from '../utils/useAuth.js';
 import { loaderIcon } from '../components/icons/loaderIcon.js';
 
+/**
+ * The router function listens for changes in the URL hash and renders the appropriate view based on the defined routes.
+ * It checks if the user is logged in to determine whether to render the default layout with a navigation bar or a clean layout without it.
+ * If no route matches the current hash, it renders a 404 page not found view.
+ */
 export function router() {
   async function handleRoute() {
     const hash = window.location.hash || '#/'; // Default to home if no hash

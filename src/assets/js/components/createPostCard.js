@@ -6,6 +6,10 @@ import useModal from '../utils/useModal';
 import { createPostModal } from './modals/createPostModal';
 import { useAuth } from '../utils/useAuth';
 
+/**
+ * Creates a card component for creating a new post, including the user's avatar and options for adding media.
+ * @returns {string} - The HTML structure for the create post card.
+ */
 export function createPostCard() {
   const { openModal } = useModal();
 
